@@ -1,0 +1,11 @@
+#!/usr/bin/env bash -x
+git pull --rebase &&
+  npm install &&
+  CI=true npm test -a &&
+  cat <<-'HERE'
+    ___ _   _  ___ ___ ___ ___ ___
+   / __| | | |/ __/ __| __/ __/ __|
+   \__ \ |_| | (_| (__| _|\__ \__ \
+   |___/\___/ \___\___|___|___/___/
+
+HERE

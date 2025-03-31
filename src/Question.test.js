@@ -1,6 +1,5 @@
 import {render, screen} from '@testing-library/react'
 import {Question} from "./Question";
-import * as test from "node:test";
 
 
 test('it renders', () => {
