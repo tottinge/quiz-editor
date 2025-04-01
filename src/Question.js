@@ -1,9 +1,25 @@
+import {useState} from "react";
+
 export function Question(props) {
-    const text = props.item.text;
-    return <article>
-        <p>Question: {text}</p>
-        <p>Age: {props.item.age}</p>
-    </article>;
+    const [doc, setDoc] = useState(props.item)
+    const handleChange = (e) => {
+        console.log(e.target.value)
+    }
+
+    return <form className="w3-container">
+
+        <label htmlFor="question">Question</label>
+        <input
+            className="w3-input"
+            type="text"
+            name="question"
+            id="question"
+            onChange={handleChange}
+            value={props.item.text}
+        />
+
+
+    </form>;
 }
 
 
