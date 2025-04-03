@@ -1,7 +1,9 @@
 import {useState} from "react";
 
 export function Question(props) {
-    const [doc, setDoc] = useState(props.item)
+
+    const nullQuestion = {text: 'fake'};
+    const [doc, setDoc] = useState(props.item ?? nullQuestion)
     const handleChange = (e) => {
         console.log(e.target.value)
     }
@@ -15,7 +17,7 @@ export function Question(props) {
             name="question"
             id="question"
             onChange={handleChange}
-            value={props.item.text}
+            value={doc.text}
         />
 
 

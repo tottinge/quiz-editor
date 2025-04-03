@@ -11,3 +11,7 @@ test('it renders', () => {
     expect(element).toBeInTheDocument();
     expect(element).toBeVisible();
 })
+
+test('it renders with no content', () => {
+    render(<Question/>);
+})
