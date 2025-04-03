@@ -22,7 +22,7 @@ test('it handles text field updates', ()=> {
         text: 'What is your name?'
     }
     render(<Question item={old_question} />);
-    const inputControl = screen.getByLabelText('Question')
+    const inputControl = screen.getByLabelText(/question/i)
     fireEvent.change(inputControl, {target: {value: new_question_text}})
     expect(inputControl.value).toBe(new_question_text)
 })

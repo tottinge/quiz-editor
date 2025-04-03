@@ -5,9 +5,7 @@ export function Question(props) {
     const nullQuestion = {text: 'fake'};
     const [doc, setDoc] = useState(props.item ?? nullQuestion)
     const handleChange = (e) => {
-        console.log("Name", e.target.name, "Value", e.target.value)
         const newDoc = {...doc, [e.target.name]: e.target.value};
-        console.log(newDoc)
         setDoc(newDoc)
     }
 
