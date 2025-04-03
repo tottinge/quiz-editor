@@ -2,8 +2,7 @@ import {useState} from "react";
 
 export function Question(props) {
 
-    const nullQuestion = {text: 'fake'};
-    const [doc, setDoc] = useState(props.item ?? nullQuestion)
+    const [doc, setDoc] = useState(props.item ?? {})
     const handleChange = (e) => {
         const newDoc = {...doc, [e.target.name]: e.target.value};
         setDoc(newDoc)
@@ -17,8 +16,20 @@ export function Question(props) {
             type="text"
             name="text"
             id="text"
+            placeholder="Question Text"
             onChange={handleChange}
-            value={doc.text}
+            value={doc.text ?? ""}
+        />
+
+        <label htmlFor="answer">Answer</label>
+        <input
+            className="w3-input"
+            type="text"
+            name="answer"
+            id="answer"
+            placeholder="Correct Answer"
+            onChange={handleChange}
+            value = {doc.answer ?? ""}
         />
 
 
