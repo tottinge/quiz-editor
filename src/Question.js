@@ -8,8 +8,11 @@ export function Question(props) {
         setDoc(newDoc)
     }
 
-    return <form className="w3-container">
+    return <form className="w3-card-4">
 
+        <h2 className="w3-green">Edit Question</h2>
+
+        <p>
         <label htmlFor="text">Question</label>
         <input
             className="w3-input"
@@ -20,6 +23,7 @@ export function Question(props) {
             onChange={handleChange}
             value={doc.text ?? ""}
         />
+        </p>
 
         <label htmlFor="answer">Answer</label>
         <input
@@ -32,6 +36,7 @@ export function Question(props) {
             value={doc.answer ?? ""}
         />
 
+        <p>
         <label htmlFor="confirmation">Confirmation</label>
         <input
             className="w3-input"
@@ -42,6 +47,7 @@ export function Question(props) {
             onChange={handleChange}
             value={doc.confirmation ?? ""}
         />
+        </p>
 
     </form>
 ;

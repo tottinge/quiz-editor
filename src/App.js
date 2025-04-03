@@ -5,8 +5,9 @@ import {Question} from "./Question";
 function App() {
   return (
     <div className="App">
+      <Question />
+
       <header className="App-header">
-        <Question />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
