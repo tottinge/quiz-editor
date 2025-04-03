@@ -5,17 +5,20 @@ export function Question(props) {
     const nullQuestion = {text: 'fake'};
     const [doc, setDoc] = useState(props.item ?? nullQuestion)
     const handleChange = (e) => {
-        console.log(e.target.value)
+        console.log("Name", e.target.name, "Value", e.target.value)
+        const newDoc = {...doc, [e.target.name]: e.target.value};
+        console.log(newDoc)
+        setDoc(newDoc)
     }
 
     return <form className="w3-container">
 
-        <label htmlFor="question">Question</label>
+        <label htmlFor="text">Question</label>
         <input
             className="w3-input"
             type="text"
-            name="question"
-            id="question"
+            name="text"
+            id="text"
             onChange={handleChange}
             value={doc.text}
         />
