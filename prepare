@@ -1,4 +1,5 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
+set -x
 git pull --rebase &&
   npm install &&
   CI=true npm test -a &&
