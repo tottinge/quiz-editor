@@ -7,7 +7,7 @@ test('it renders', () => {
         text: "What is your name?"
     }
     render(<Question item={text_question}/>);
-    const element = screen.getByDisplayValue(/what/i);
+    const element = screen.getByDisplayValue(/What/i);
     expect(element).toBeInTheDocument();
     expect(element).toBeVisible();
 })

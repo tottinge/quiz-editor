@@ -29,16 +29,28 @@ export function Question(props) {
             id="answer"
             placeholder="Correct Answer"
             onChange={handleChange}
-            value = {doc.answer ?? ""}
+            value={doc.answer ?? ""}
         />
 
+        <label htmlFor="confirmation">Confirmation</label>
+        <input
+            className="w3-input"
+            type="text"
+            name="confirmation"
+            id="confirmation"
+            placeholder="Confirmation Text"
+            onChange={handleChange}
+            value={doc.confirmation ?? ""}
+        />
 
-    </form>;
+    </form>
+;
 }
 
 
 // const resources = [
 //     {
+
 //         text: "text",
 //         url: "https://example.com"
 //     }
