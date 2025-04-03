@@ -4,8 +4,9 @@ import {Question} from "./Question";
 
 function App() {
   return (
+  <>
+  <Question />
     <div className="App">
-      <Question />
 
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -22,6 +23,7 @@ function App() {
         </a>
       </header>
     </div>
+  </>
   );
 }
 

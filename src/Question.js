@@ -1,8 +1,10 @@
 import {useState} from "react";
+import {v4 as uuidv4} from "uuid";
 
 export function Question(props) {
 
-    const [doc, setDoc] = useState(props.item ?? {})
+    const [doc, setDoc] = useState(props.item ?? {question_id: uuidv4()})
+
     const handleChange = (e) => {
         const newDoc = {...doc, [e.target.name]: e.target.value};
         setDoc(newDoc)
@@ -64,11 +66,11 @@ export function Question(props) {
 
 // const question = {
 //     text: 'This is my question'
-//     // answer: text
+//     answer: text
 //     // decoys: list of text
 //     // resources: list of Resource: text + url
-//     // confirmation: text explanatory
-//     // question_id: guid
+//     confirmation: text explanatory
+//     question_id: guid
 //
 // }
 
