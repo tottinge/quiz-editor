@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {v4 as uuidv4} from "uuid";
+import {DecoyList} from "./DecoyList";
 
 export function Question(props) {
 
@@ -37,6 +38,8 @@ export function Question(props) {
             onChange={handleChange}
             value={doc.answer ?? ""}
         />
+
+        <DecoyList decoys={["orange","carrot","apple"]}/>
 
         <p>
         <label htmlFor="confirmation">Confirmation</label>
