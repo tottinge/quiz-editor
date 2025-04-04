@@ -6,13 +6,15 @@ export function Question(props) {
 
     const [doc, setDoc] = useState(props.item ?? {question_id: uuidv4()})
 
-    const handleChange = (e) => {
-        const newDoc = {...doc, [e.target.name]: e.target.value};
+    function handleChange(e) {
+        const newDoc = {
+            ...doc,
+            [e.target.name]: e.target.value
+        };
         setDoc(newDoc)
     }
 
     return <form className="w3-card-4">
-
         <h2 className="w3-green">Edit Question</h2>
 
         <p>
@@ -39,7 +41,7 @@ export function Question(props) {
             value={doc.answer ?? ""}
         />
 
-        <DecoyList decoys={["orange","carrot","apple"]}/>
+        <DecoyList/>
 
         <p>
         <label htmlFor="confirmation">Confirmation</label>

@@ -1,13 +1,13 @@
 import {fireEvent, render, screen} from '@testing-library/react'
 import {Question} from "./Question";
-
+import { test, expect } from '@jest/globals';
 
 test('it renders', () => {
     const text_question = {
         text: "What is your name?"
     }
     render(<Question item={text_question}/>);
-    const element = screen.getByDisplayValue(/What/i);
+    const element = screen.getByDisplayValue(/what is your name/i);
     expect(element).toBeInTheDocument();
     expect(element).toBeVisible();
 })
