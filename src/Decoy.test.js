@@ -21,3 +21,7 @@ it("renders a list of decoys", ()=> {
     const decoys = screen.getAllByRole('listitem')
     expect(decoys).toHaveLength(3)
 })
+
+it("can add a decoy", ()=> {})
+
+it("can remove a decoy", ()=> {})
