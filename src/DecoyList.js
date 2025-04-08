@@ -5,15 +5,24 @@ export function DecoyList(props) {
     const listToManage = (props.decoys ?? []).map(decoy => [uuidv4(), decoy])
     const [decoys, setDecoys] = useState(listToManage)
 
-    function onNewDecoyEntered(e) {
-        console.log("blur event", e)
+    function addDecoy(newDecoyString) {
+        let newEntry = [uuidv4(), newDecoyString];
+        setDecoys(decoys.concat([newEntry]))
     }
+
+    function onBlur(e) {
+        if(e.target.id !== "New Decoy" || e.target.value === "") {
+            return;
+        }
+        addDecoy(e.target.value);
+        e.target.value = ""
+    }
+
     function onEnterPressed(e) {
         if (e.key !== "Enter") {
             return;
         }
-        let newEntry = [uuidv4(), e.target.value];
-        setDecoys(decoys.concat([newEntry]))
+        addDecoy(e.target.value);
         e.target.value = ""
     }
 
@@ -28,7 +37,7 @@ export function DecoyList(props) {
                 name="new-decoy"
                 id="New Decoy"
                 placeholder="New Decoy"
-                onBlur={onNewDecoyEntered}
+                onBlur={onBlur}
                 onKeyDown={onEnterPressed}/>
             </li>
         </ul>

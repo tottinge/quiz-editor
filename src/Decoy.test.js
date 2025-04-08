@@ -24,12 +24,26 @@ it("renders a non-empty list of decoys", ()=> {
 })
 
 it("can add a decoy when users hit Enter", ()=> {
-    const decoyText = "affirmative"
+    const decoyText = "pressed enter to add"
     render(<DecoyList decoys={[]}/>)
 
     const newItemField = screen.getByPlaceholderText(/new decoy/i)
     userEvent.type(newItemField, decoyText)
     userEvent.keyboard("{enter}")
+
+    // expect one decoy and one input
+    const decoys = screen.getAllByRole('listitem')
+    expect(decoys).toHaveLength(2)
+    expect(decoys[0]).toHaveTextContent(decoyText)
+})
+
+it("can add a decoy when users tab off the input field", ()=> {
+    const decoyText = "Enter By Tabbing"
+    render(<DecoyList decoys={[]}/>)
+
+    const newItemField = screen.getByPlaceholderText(/new decoy/i)
+    userEvent.type(newItemField, decoyText)
+    userEvent.tab()
 
     // expect one decoy and one input
     const decoys = screen.getAllByRole('listitem')
