@@ -55,9 +55,8 @@ it("can remove a decoy", ()=> {
     const decoyTerms = ["bleep","bloop","bing","brrrrap"]
     render(<DecoyList decoys={decoyTerms}/>)
 
-    const decoyText = screen.getByText(/bloop/i)
-    let containingLI = decoyText.closest('li');
-    const deleteButton = within(containingLI).getByRole('button')
+    let liContainer = screen.getByText(/bloop/i)['parentElement'];
+    const deleteButton = within(liContainer).getByRole('button')
     userEvent.click(deleteButton)
 
     expect(screen.getAllByRole("listitem")).toHaveLength(3)
