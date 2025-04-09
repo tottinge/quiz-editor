@@ -27,7 +27,7 @@ export function DecoyList(props) {
     }
 
     return <div>
-        <h2>Decoys</h2>
+        <label htmlFor="text">Decoys List:</label>
         <ul className="w3-ul">
             {decoys.map((decoy) => {
                 return <li key={decoy[0]}>{decoy[1]}</li>
@@ -36,7 +36,7 @@ export function DecoyList(props) {
                 type="text"
                 name="new-decoy"
                 id="New Decoy"
-                placeholder="New Decoy"
+                placeholder="new decoy"
                 onBlur={onBlur}
                 onKeyDown={onEnterPressed}/>
             </li>

@@ -1,6 +1,8 @@
 import {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {DecoyList} from "./DecoyList";
+import {ResourceList} from "./ResourceList";
+
 
 export function Question(props) {
 
@@ -18,25 +20,25 @@ export function Question(props) {
         <h2 className="w3-green">Edit Question</h2>
 
         <p>
-        <label htmlFor="text">Question</label>
+        <label htmlFor="text">Question To Ask:</label>
         <input
             className="w3-input"
             type="text"
             name="text"
             id="text"
-            placeholder="Question Text"
+            placeholder="question text"
             onChange={handleChange}
             value={doc.text ?? ""}
         />
         </p>
 
-        <label htmlFor="answer">Answer</label>
+        <label htmlFor="answer">Correct Answer</label>
         <input
             className="w3-input"
             type="text"
             name="answer"
             id="answer"
-            placeholder="Correct Answer"
+            placeholder="answer text"
             onChange={handleChange}
             value={doc.answer ?? ""}
         />
@@ -50,11 +52,13 @@ export function Question(props) {
             type="text"
             name="confirmation"
             id="confirmation"
-            placeholder="Confirmation Text"
+            placeholder="confirmation text"
             onChange={handleChange}
             value={doc.confirmation ?? ""}
         />
         </p>
+
+        <ResourceList/>
 
     </form>
 ;
