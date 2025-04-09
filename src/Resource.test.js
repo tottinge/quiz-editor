@@ -5,8 +5,8 @@ import {expect, it} from "@jest/globals";
 it("can render an empty resource", () => {
     render(<Resource />);
 
-    expect(screen.getByLabelText(/description/i)).toBeVisible();
-    expect(screen.getByLabelText(/url/i)).toBeVisible();
+    expect(screen.getByPlaceholderText(/description/i)).toBeVisible();
+    expect(screen.getByPlaceholderText(/url/i)).toBeVisible();
 });
 
 

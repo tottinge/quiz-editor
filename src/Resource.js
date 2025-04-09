@@ -1,6 +1,6 @@
 export function Resource(props) {
     return <div className="w3-container w3-card w3-grid">
-        <div classname="w3-row" style={{bgcolor: "red"}}>
+        <div className="w3-row" style={{bgcolor: "red"}}>
 
             <div className="w3-col">
                 <label>Resource</label>
