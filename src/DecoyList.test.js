@@ -52,7 +52,6 @@ it("can add a decoy when users tab off the input field", ()=> {
 })
 
 it("can remove a decoy", ()=> {
-    console.log("test")
     const decoyTerms = ["bleep","bloop","bing","brrrrap"]
     render(<DecoyList decoys={decoyTerms}/>)
 
@@ -61,4 +60,5 @@ it("can remove a decoy", ()=> {
     userEvent.click(deleteButton)
 
     expect(screen.getAllByRole("listitem")).toHaveLength(3)
+    expect(screen.queryByText(/bleep/i)).toBeNull()
 })
