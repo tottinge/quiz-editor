@@ -42,9 +42,10 @@ export function DecoyList(props) {
             onKeyDown={onEnterPressed}/>
         <ul className="w3-ul">
             {decoys.map(([key,value]) => {
-                return <li key={key} style={{display: "flex", justifyContent: "space-around"}}>
-                    <span>{value}</span>
+                return <li key={key}>
                     <button onClick={() => deleteDecoy(key)}>X</button>
+                    &nbsp;
+                    <span>{value}</span>
                 </li>
             })}
         </ul>

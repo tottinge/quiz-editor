@@ -42,21 +42,20 @@ export function Question(props) {
             onChange={handleChange}
             value={doc.answer ?? ""}
         />
+        <p>
+            <label htmlFor="confirmation">Confirmation</label>
+            <input
+                className="w3-input"
+                type="text"
+                name="confirmation"
+                id="confirmation"
+                placeholder="confirmation text"
+                onChange={handleChange}
+                value={doc.confirmation ?? ""}
+            />
+        </p>
 
         <DecoyList/>
-
-        <p>
-        <label htmlFor="confirmation">Confirmation</label>
-        <input
-            className="w3-input"
-            type="text"
-            name="confirmation"
-            id="confirmation"
-            placeholder="confirmation text"
-            onChange={handleChange}
-            value={doc.confirmation ?? ""}
-        />
-        </p>
 
         <ResourceList/>
 
