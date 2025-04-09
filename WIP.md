@@ -13,5 +13,6 @@
   * First step - independent implementations 
   * Next step - more direct integration 
 * Explore a more improved persistence model (MongoDB?) 
-* Delete and edit decoys 
+* ~~Delete~~ and edit decoys
+  * We can delete them now
 * Make resources editable 
