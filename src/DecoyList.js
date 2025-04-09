@@ -32,7 +32,7 @@ export function DecoyList(props) {
     }
 
     return <div>
-        <h2>Decoys</h2>
+        <p><label>Decoys</label></p>
         <input
             type="text"
             name="new-decoy"
@@ -43,7 +43,7 @@ export function DecoyList(props) {
         <ul className="w3-ul">
             {decoys.map(([key,value]) => {
                 return <li key={key}>
-                    <button onClick={() => deleteDecoy(key)}>X</button>
+                    <button onClick={() => deleteDecoy(key)}>&times;</button>
                     &nbsp;
                     <span>{value}</span>
                 </li>

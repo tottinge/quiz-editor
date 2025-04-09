@@ -16,7 +16,7 @@ export function Question(props) {
         setDoc(newDoc)
     }
 
-    return <form className="w3-card-4">
+    return <form className="w3-card-4 w3-container">
         <h2 className="w3-green">Edit Question</h2>
 
         <p>
@@ -32,7 +32,7 @@ export function Question(props) {
         />
         </p>
 
-        <label htmlFor="answer">Correct Answer</label>
+        <label htmlFor="answer">Correct Answer:</label>
         <input
             className="w3-input"
             type="text"
@@ -42,18 +42,16 @@ export function Question(props) {
             onChange={handleChange}
             value={doc.answer ?? ""}
         />
-        <p>
-            <label htmlFor="confirmation">Confirmation</label>
-            <input
-                className="w3-input"
-                type="text"
-                name="confirmation"
-                id="confirmation"
-                placeholder="confirmation text"
-                onChange={handleChange}
-                value={doc.confirmation ?? ""}
-            />
-        </p>
+        <label htmlFor="confirmation">Confirmation:</label>
+        <input
+            className="w3-input"
+            type="text"
+            name="confirmation"
+            id="confirmation"
+            placeholder="confirmation text"
+            onChange={handleChange}
+            value={doc.confirmation ?? ""}
+        />
 
         <DecoyList/>
 
