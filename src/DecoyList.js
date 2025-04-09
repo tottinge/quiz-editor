@@ -35,6 +35,7 @@ export function DecoyList(props) {
         <p><label>Decoys</label></p>
         <input
             type="text"
+            className="w3-input w3-border"
             name="new-decoy"
             id="New Decoy"
             placeholder="New Decoy"
