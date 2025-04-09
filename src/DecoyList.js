@@ -11,7 +11,7 @@ export function DecoyList(props) {
     }
 
     function onBlur(e) {
-        if(e.target.id !== "New Decoy" || e.target.value === "") {
+        if (e.target.id !== "New Decoy" || e.target.value === "") {
             return;
         }
         addDecoy(e.target.value);
@@ -22,24 +22,31 @@ export function DecoyList(props) {
         if (e.key !== "Enter") {
             return;
         }
+        e.preventDefault();
         addDecoy(e.target.value);
         e.target.value = ""
     }
 
+    function deleteDecoy(key) {
+        setDecoys(decoys.filter(decoy => decoy[0] !== key))
+    }
+
     return <div>
-        <label htmlFor="text">Decoys List:</label>
+        <h2>Decoys</h2>
+        <input
+            type="text"
+            name="new-decoy"
+            id="New Decoy"
+            placeholder="New Decoy"
+            onBlur={onBlur}
+            onKeyDown={onEnterPressed}/>
         <ul className="w3-ul">
-            {decoys.map((decoy) => {
-                return <li key={decoy[0]}>{decoy[1]}</li>
+            {decoys.map(([key,value]) => {
+                return <li key={key} style={{display: "flex", justifyContent: "space-around"}}>
+                    <span>{value}</span>
+                    <button onClick={() => deleteDecoy(key)}>X</button>
+                </li>
             })}
-            <li><input
-                type="text"
-                name="new-decoy"
-                id="New Decoy"
-                placeholder="new decoy"
-                onBlur={onBlur}
-                onKeyDown={onEnterPressed}/>
-            </li>
         </ul>
     </div>
 }

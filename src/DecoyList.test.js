@@ -1,7 +1,7 @@
 // noinspection JSCheckFunctionSignatures
 
 import {DecoyList} from "./DecoyList";
-import {render, screen} from "@testing-library/react";
+import {render, screen, within} from "@testing-library/react";
 import {expect, it} from '@jest/globals';
 import userEvent from "@testing-library/user-event";
 
@@ -20,7 +20,7 @@ it("renders an empty list of decoys", ()=> {
 it("renders a non-empty list of decoys", ()=> {
     render(<DecoyList decoys={["affirmative", "negative"]}/>)
     const decoys = screen.getAllByRole('listitem')
-    expect(decoys).toHaveLength(3)
+    expect(decoys).toHaveLength(2)
 })
 
 it("can add a decoy when users hit Enter", ()=> {
@@ -33,7 +33,7 @@ it("can add a decoy when users hit Enter", ()=> {
 
     // expect one decoy and one input
     const decoys = screen.getAllByRole('listitem')
-    expect(decoys).toHaveLength(2)
+    expect(decoys).toHaveLength(1)
     expect(decoys[0]).toHaveTextContent(decoyText)
 })
 
@@ -47,8 +47,18 @@ it("can add a decoy when users tab off the input field", ()=> {
 
     // expect one decoy and one input
     const decoys = screen.getAllByRole('listitem')
-    expect(decoys).toHaveLength(2)
+    expect(decoys).toHaveLength(1)
     expect(decoys[0]).toHaveTextContent(decoyText)
 })
 
-it("can remove a decoy", ()=> {})
+it("can remove a decoy", ()=> {
+    console.log("test")
+    const decoyTerms = ["bleep","bloop","bing","brrrrap"]
+    render(<DecoyList decoys={decoyTerms}/>)
+
+    const decoys = screen.getAllByRole("listitem")
+    const deleteButton = within(decoys[0]).getByRole("button")
+    userEvent.click(deleteButton)
+
+    expect(screen.getAllByRole("listitem")).toHaveLength(3)
+})
