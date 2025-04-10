@@ -2,6 +2,16 @@ import {useState} from "react";
 
 export function Resource(props) {
     const [resource, setResource] = useState(props)
+
+    function getPreviewUrl() {
+        if(resource.url) {
+            if (resource.url.startsWith("http://") || resource.url.startsWith("https://")) {
+                return resource.url
+            }
+        }
+        return "/logo192.png"
+    }
+
     const onChange = (e) => {
         setResource({...resource, [e.target.name]: e.target.value})
     }
@@ -28,14 +38,13 @@ export function Resource(props) {
                     value={resource.url}
                     onChange={onChange}
                 />
-            </div>
-            <label>(Preview)</label>
-            <div className="w3-card w3-half">
+                <label>Preview</label>
                 <iframe
-                    src={resource.url}
+                    width="100%"
+                    src={getPreviewUrl()}
                     title={"Preview of " + resource.description}
                     referrerPolicy="no-referrer"
-                    style = {{border: "none"}}
+                    style={{border: "none"}}
                 />
             </div>
         </div>
