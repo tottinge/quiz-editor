@@ -53,16 +53,8 @@ export function Question(props) {
             value={doc.confirmation ?? ""}
         />
 
-        <DecoyList/>
-        <hr/>
-        <h2>Temporary Only to Test Resources </h2>
-        <Resource url="http://wikipedia.com" description="Wikipedia"/>
-        <Resource url="https://example.com" description="Example"/>
-        <Resource/>
-        <hr/>
-
-        <ResourceList/>
-
+        <DecoyList decoys={doc.decoys}/>
+        <ResourceList resources={doc.resources || []}/>
     </form>
         ;
 }

@@ -1,45 +1,36 @@
 import {useState} from "react";
-import {v4 as uuidv4} from "uuid";
+import {Resource} from "./Resource";
 
 export function ResourceList(props) {
-    const listToManage = (props.resources ?? []).map(resource => [uuidv4(), resource])
-    const [resources, setResources] = useState(listToManage)
+    const [resources, setResources] = useState((props.resources ?? []))
 
-    function addResource(newResourceString) {
-        let newEntry = [uuidv4(), newResourceString];
+    function addResource(e) {
+        let newEntry = ["", ""];
         setResources(resources.concat([newEntry]))
+        console.log(resources)
+        e.preventDefault()
     }
 
-    function onBlur(e) {
-        if(e.target.id !== "New Resource" || e.target.value === "") {
-            return;
-        }
-        addResource(e.target.value);
-        e.target.value = ""
-    }
-
-    function onEnterPressed(e) {
-        if (e.key !== "Enter") {
-            return;
-        }
-        addResource(e.target.value);
-        e.target.value = ""
-    }
 
     return <div>
-        <label htmlFor="text">Resource List:</label>
-        <ul className="w3-ul">
-            {resources.map((resource) => {
-                return <li key={resource[0]}>{resource[1]}</li>
-            })}
-            <li><input
-                type="text"
-                name="new-resource"
-                id="New Resource"
-                placeholder="resource link"
-                onBlur={onBlur}
-                onKeyDown={onEnterPressed}/>
-            </li>
-        </ul>
+        <header>Resource List:</header>
+        <br/>
+        <button
+            className="w3-button w3-green"
+            title="Add Resource"
+            onClick={addResource}> +</button>
+        <div className="w3-container w3-flex w3-padding" title={"list of resources"}>
+            {
+                resources.map(([description, url], index) => {
+                    return <div width="100%"
+                        role={"listitem"}
+                        id={"resource-" + index}
+                        className="w3-padding w3-container"
+                        key={index}>
+                        <Resource width={"100%"} description={description} url={url}/>
+                    </div>
+                })
+            }
+        </div>
     </div>
 }

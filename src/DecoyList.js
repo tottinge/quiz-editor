@@ -32,7 +32,7 @@ export function DecoyList(props) {
     }
 
     return <div>
-        <p><label>Decoys</label></p>
+        <p><header>Decoys</header></p>
         <input
             type="text"
             className="w3-input w3-border"
