@@ -7,7 +7,7 @@ import userEvent from "@testing-library/user-event";
 
 const inputResources = [
     ["The mother ship", "http://industriallogic.com/"],
-    ["Jabberwocky", "https://www.poetryfoundation.org/poems/42916/jabberwocky"],
+    ["Jabberwocky Poem", "https://www.poetryfoundation.org/poems/42916/jabberwocky"],
     ["React Guide", "https://reactjs.org/docs/getting-started.html"]
 ]
 
@@ -22,7 +22,7 @@ it("renders an empty list of resources", ()=> {
     expect(newItemField).toBeVisible()
 
     const resourceHolder = screen.getByTitle("list of resources")
-    expect(resourceHolder).toBeEmpty()
+    expect(resourceHolder).toBeEmptyDOMElement()
 })
 
 it("renders a non-empty list of resources", ()=> {
@@ -33,11 +33,20 @@ it("renders a non-empty list of resources", ()=> {
 })
 
 it("can add a resource", ()=> {
-
+    render(<ResourceList/>)
+    const add_button = screen.getByTitle("Add Resource")
+    userEvent.click(add_button)
+    const resourceHolder = screen.getAllByRole("listitem")
+    expect(resourceHolder).toHaveLength(1)
 })
 
-
-
 it("can remove a resource", ()=> {
+    render(<ResourceList resources={inputResources}/>)
 
+    const items = screen.getAllByRole("listitem")
+    const deleteButton = within(items[1]).getByRole("button")
+    userEvent.click(deleteButton)
+
+    const resourceHolder = screen.getAllByRole("listitem")
+    expect(resourceHolder).toHaveLength(2)
 })

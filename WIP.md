@@ -1,7 +1,7 @@
 # Work In Progress 
 
 * Add missing Question Elements 
-  * Resources 
+  * ~~Resources~~ 
 * Make the Question rendering more beautiful 
 * Edit full quiz content 
   * Name 
@@ -16,3 +16,6 @@
 * ~~Delete~~ and edit decoys
   * We can delete them now
 * Make resources editable 
+  * ~~We can add them~~
+  * We can re-edit them
+  * 

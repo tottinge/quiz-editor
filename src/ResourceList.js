@@ -11,6 +11,12 @@ export function ResourceList(props) {
         e.preventDefault()
     }
 
+    function deleteResource(index) {
+        const newItems = [...resources];
+        newItems.splice(index, 1);
+        setResources(newItems);
+
+    }
 
     return <div>
         <header>Resource List:</header>
@@ -18,16 +24,24 @@ export function ResourceList(props) {
         <button
             className="w3-button w3-green"
             title="Add Resource"
-            onClick={addResource}> +</button>
+            onClick={addResource}> +
+        </button>
         <div className="w3-container w3-flex w3-padding" title={"list of resources"}>
             {
                 resources.map(([description, url], index) => {
                     return <div width="100%"
-                        role={"listitem"}
-                        id={"resource-" + index}
-                        className="w3-padding w3-container"
-                        key={index}>
-                        <Resource width={"100%"} description={description} url={url}/>
+                                role={"listitem"}
+                                id={"resource-" + index}
+                                className="w3-card  w3-padding w3-container"
+                                key={index}>
+                        <Resource width="100%" description={description} url={url}/>
+                        <button
+                            className="w3-button w3-teal w3-block"
+                            onClick={() => {
+                                deleteResource(index)
+                            }}>
+                            Remove
+                        </button>
                     </div>
                 })
             }

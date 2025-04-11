@@ -15,7 +15,7 @@ export function Resource(props) {
     const onChange = (e) => {
         setResource({...resource, [e.target.name]: e.target.value})
     }
-    return <div className="w3-card">
+    return <div>
         <div className="w3-section" style={{bgcolor: "red"}}>
             <label htmlFor={"description"}>Text:</label>
             <input
