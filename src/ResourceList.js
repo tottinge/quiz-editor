@@ -5,17 +5,16 @@ export function ResourceList(props) {
     const [resources, setResources] = useState((props.resources ?? []))
 
     function addResource(e) {
+        e.preventDefault()
         let newEntry = ["", ""];
         setResources(resources.concat([newEntry]))
         console.log(resources)
-        e.preventDefault()
     }
 
     function deleteResource(index) {
         const newItems = [...resources];
         newItems.splice(index, 1);
         setResources(newItems);
-
     }
 
     return <div>
@@ -37,7 +36,8 @@ export function ResourceList(props) {
                         <Resource width="100%" description={description} url={url}/>
                         <button
                             className="w3-button w3-teal w3-block"
-                            onClick={() => {
+                            onClick={(e) => {
+                                e.preventDefault();
                                 deleteResource(index)
                             }}>
                             Remove
