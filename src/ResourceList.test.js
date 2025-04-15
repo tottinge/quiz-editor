@@ -41,12 +41,24 @@ it("can add a resource", ()=> {
 })
 
 it("can remove a resource", ()=> {
+    const patternForDescriptionText = /text to show users/i;
+    const allDescriptions = inputResources.map(([desc,url]) => desc);
+
     render(<ResourceList resources={inputResources}/>)
+
+    const itemsBefore = screen
+        .getAllByTitle(patternForDescriptionText)
+        .map(item => item.value);
+    expect(itemsBefore).toEqual(allDescriptions);
 
     const items = screen.getAllByRole("listitem")
     const deleteButton = within(items[1]).getByRole("button")
     userEvent.click(deleteButton)
 
-    const resourceHolder = screen.getAllByRole("listitem")
-    expect(resourceHolder).toHaveLength(2)
+    const itemsAfter = screen
+        .getAllByTitle(patternForDescriptionText).map(item => item.value)
+    expect(itemsAfter).toEqual([
+        allDescriptions[0],
+        allDescriptions[2]
+    ])
 })

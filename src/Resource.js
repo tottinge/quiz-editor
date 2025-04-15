@@ -1,7 +1,9 @@
 import {useState} from "react";
 
 export function Resource(props) {
-    const [resource, setResource] = useState(props)
+    const initial = {description:props.description??"", url:props.url??""}
+    const [resource, setResource] = useState(initial)
+    console.log("Resource.state", resource)
 
     function getPreviewUrl() {
         if (resource.url) {
@@ -14,6 +16,10 @@ export function Resource(props) {
 
     const onChange = (e) => {
         setResource({...resource, [e.target.name]: e.target.value})
+        console.log("resource to update for parent", resource)
+        if (props.parentUpdate) {
+            props.parentUpdate(resource)
+        }
     }
     return <div>
         <div className="w3-section" style={{bgcolor: "red"}}>
@@ -23,6 +29,7 @@ export function Resource(props) {
                 id="description"
                 name="description"
                 placeholder="Enter description here:"
+                title="Text to show users after the answer"
                 type='text'
                 value={resource.description}
                 onChange={onChange}
@@ -34,6 +41,7 @@ export function Resource(props) {
                 id="url"
                 name="url"
                 type="url"
+                title="url of resource for users to visit (must start with http)"
                 value={resource.url}
                 onChange={onChange}
             />
