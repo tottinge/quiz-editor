@@ -32,14 +32,15 @@ export function ResourceList(props) {
             onClick={addResource}>
             Add
         </button>
-        <div className="w3-container w3-flex w3-padding" title="list of resources">
+        <div className="resource-container w3-padding"
+             title="list of resources">
             {
                 resources.map((resource) => {
                     return <div
                         role={"listitem"}
                         key={resource.uuid}
                         id={resource.uuid}
-                        className="w3-card  w3-padding w3-container"
+                        className="resource-card w3-card w3-padding w3-container"
                     >
                         <Resource description={resource.description} url={resource.url} uuid={resource.uuid}
                                   parentUpdate={(resource) => updateResource(resource)}/>

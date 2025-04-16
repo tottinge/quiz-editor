@@ -24,7 +24,7 @@ export function Resource(props) {
         }
     }
     return <div>
-        <div className="w3-section" style={{bgcolor: "red"}} title="resource for further reading">
+        <div className="resource-item" title="resource for further reading">
             <label htmlFor={"description"}>Text:</label>
             <input
                 className="w3-input"
