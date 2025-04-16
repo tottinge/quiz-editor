@@ -11,9 +11,6 @@ it("can render an empty resource", () => {
     expect(screen.getByPlaceholderText(/description/i)).toBeVisible();
     expect(screen.getByPlaceholderText(/url/i)).toBeVisible();
 
-    let previewFrame = screen.getByTitle(/preview of/i);
-    expect(previewFrame).toBeVisible();
-    expect(previewFrame.src).toContain(defaultPreviewUrl);
 });
 
 
@@ -25,9 +22,9 @@ it("can render a populated resource", () => {
     expect(screen.getByDisplayValue(/the poem by/i)).toBeVisible()
     expect(screen.getByDisplayValue(/poetryfoundation/i)).toBeVisible()
 
-    const preview = screen.getByTitle(/preview of/i)
+    const preview = screen.getByTitle(/preview of resource/i)
     expect(preview).toBeVisible();
-    expect(preview.src).toContain("poetryfoundation.org");
+    expect(preview.href).toContain("poetryfoundation.org");
 });
 
 it("can edit the description", () => {
@@ -46,15 +43,5 @@ it("can enter a valid URL", ()=>{
     userEvent.type(descriptionField, newUrl)
     userEvent.keyboard("{enter}")
     const previewField = screen.getByTitle(/preview of/i)
-    expect(previewField.src).toBe(newUrl)
-})
-
-it("substitutes a default preview for an invalid url", ()=>{
-    render(<Resource />);
-
-    const descriptionField = screen.getByLabelText(/url:/i)
-    userEvent.type(descriptionField, "invalid")
-
-    const previewField = screen.getByTitle(/preview of/i)
-    expect(previewField.src).toBe(defaultPreviewUrl)
+    expect(previewField.href).toBe(newUrl)
 })

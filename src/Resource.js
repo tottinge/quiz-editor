@@ -8,15 +8,6 @@ export function Resource(props) {
     };
     const [resource, setResource] = useState(item)
 
-    function getPreviewUrl() {
-        if (resource.url) {
-            if (resource.url.startsWith("http://") || resource.url.startsWith("https://")) {
-                return resource.url
-            }
-        }
-        return "/logo192.png"
-    }
-
     const onChange = (e) => {
         setResource({...resource, [e.target.name]: e.target.value})
         if (props.parentUpdate) {
@@ -46,18 +37,20 @@ export function Resource(props) {
                 type="url"
                 title="url of resource for recommended reading"
                 value={resource.url}
+                pattern="https?://.+"
                 onChange={onChange}
                 onBlur={onChange}
             />
+            {resource.url && resource.url.startsWith("http") && (
+                <a className="w3-green w3-button centered-button"
+                   title={"open preview of resource in new tab"}
+                   href={resource.url}
+                    target="_blank"
+                    rel="noreferrer">
+                    Preview In New Tab
+                </a>
+            )}
 
-            <label>Preview</label>
-            <iframe
-                width="100%"
-                src={getPreviewUrl()}
-                title={"Preview of " + resource.description+" if available"}
-                referrerPolicy="no-referrer"
-                style={{border: "none"}}
-            />
         </div>
     </div>
 }

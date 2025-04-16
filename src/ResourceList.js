@@ -42,17 +42,17 @@ export function ResourceList(props) {
                         id={resource.uuid}
                         className="resource-card w3-card w3-padding w3-container"
                     >
-                        <Resource description={resource.description} url={resource.url} uuid={resource.uuid}
-                                  parentUpdate={(resource) => updateResource(resource)}/>
                         <button
-                            className="w3-button w3-teal w3-block"
+                            className="centered-button w3-button w3-green"
                             title="Remove Resource"
                             onClick={(e) => {
                                 e.preventDefault();
                                 deleteResource(resource.uuid)
                             }}>
-                            Remove
+                            &times;
                         </button>
+                        <Resource description={resource.description} url={resource.url} uuid={resource.uuid}
+                                  parentUpdate={(resource) => updateResource(resource)}/>
                     </div>
                 })
             }

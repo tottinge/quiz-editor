@@ -32,7 +32,7 @@ export function DecoyList(props) {
     }
 
     return <div>
-        <header>Decoys</header>
+        <header className="input-label">Decoys</header>
         <input
             type="text"
             className="w3-input w3-border"
@@ -41,14 +41,22 @@ export function DecoyList(props) {
             placeholder="New Decoy"
             onBlur={onBlur}
             onKeyDown={onEnterPressed}/>
-        <ul className="w3-ul">
+        <div className="decoy-container">
             {decoys.map(([key,value]) => {
-                return <li key={key}>
-                    <button onClick={() => deleteDecoy(key)}>&times;</button>
+                return <div
+                    key={key}
+                    className="decoy-item"
+                    role="listitem"
+                >
+                    <button
+                        className="w3-button w3-green"
+                        onClick={() => deleteDecoy(key)}>
+                        &times;
+                    </button>
                     &nbsp;
                     <span>{value}</span>
-                </li>
+                </div>
             })}
-        </ul>
+        </div>
     </div>
 }

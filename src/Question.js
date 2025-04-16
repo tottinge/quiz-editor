@@ -20,7 +20,7 @@ export function Question(props) {
     return <form className="w3-card-4 w3-container">
         <h2 className="w3-green">Edit Question</h2>
         <p>
-            <label htmlFor="text">Question To Ask:</label>
+            <label className="input-label w3-green" htmlFor="text">Question To Ask:</label>
             <input
                 className="w3-input"
                 type="text"
@@ -32,7 +32,7 @@ export function Question(props) {
             />
         </p>
 
-        <label htmlFor="answer">Correct Answer:</label>
+        <label className="input-label" htmlFor="answer">Correct Answer:</label>
         <input
             className="w3-input"
             type="text"
@@ -42,7 +42,7 @@ export function Question(props) {
             onChange={handleChange}
             value={doc.answer ?? ""}
         />
-        <label htmlFor="confirmation">Confirmation:</label>
+        <label className="input-label" htmlFor="confirmation">Confirmation:</label>
         <input
             className="w3-input"
             type="text"
@@ -54,6 +54,9 @@ export function Question(props) {
         />
 
         <DecoyList decoys={doc.decoys}/>
+
+        <br/>
+
         <ResourceList resources={doc.resources || []}/>
     </form>
         ;
