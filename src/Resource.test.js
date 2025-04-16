@@ -45,3 +45,22 @@ it("can enter a valid URL", ()=>{
     const previewField = screen.getByTitle(/preview of/i)
     expect(previewField.href).toBe(newUrl)
 })
+
+it("show no preview link for an empty URL", ()=>{
+    render(<Resource />);
+    const previewFields = screen.queryAllByTitle(/open preview/i)
+    expect(previewFields).toHaveLength(0)
+})
+
+it("presents a preview link with valid url", ()=>{
+    render(<Resource url="http://example.com/" description="" uuid=""  />);
+    const previewFields = screen.getAllByTitle(/open preview/i)
+    expect(previewFields).toHaveLength(1)
+    expect(previewFields[0].href).toBe("http://example.com/")
+})
+
+it("presents no preview link with invalid url", ()=>{
+    render(<Resource url="no prefix no suffix" description="" uuid=""  />);
+    const previewFields = screen.queryAllByTitle(/open preview/i)
+    expect(previewFields).toHaveLength(0)
+})
