@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {Resource} from "./Resource";
+import "./w3.css";
 
 export function ResourceList(props) {
     const [resources, setResources] = useState((props.resources ?? []))
@@ -43,7 +44,7 @@ export function ResourceList(props) {
                         className="resource-card w3-card w3-padding w3-panel"
                     >
                         <button
-                            className="centered-button w3-button w3-green"
+                            className="centered-button w3-button w3-right w3-green"
                             title="Remove Resource"
                             onClick={(e) => {
                                 e.preventDefault();

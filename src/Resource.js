@@ -1,5 +1,6 @@
 import {useState} from "react";
 import validator from "validator";
+import "./w3.css";
 
 export function Resource(props) {
     const item = {
@@ -17,7 +18,7 @@ export function Resource(props) {
     }
 
     function getUrlFor(url) {
-        if (validator.isURL(url)) {
+        if (url && validator.isURL(url)) {
             return url;
         }
         return "";
@@ -50,15 +51,21 @@ export function Resource(props) {
                 onChange={onChange}
                 onBlur={onChange}
             />
-            {getUrlFor(resource.url) && (
-                <a className="w3-green w3-button centered-button"
-                   title={"open preview of resource in new tab"}
-                   href={resource.url}
-                    target="_blank"
-                    rel="noreferrer">
-                    Preview In New Tab
-                </a>
-            )}
+            <iframe title="preview of resource page" src={getUrlFor(resource.url)}></iframe>
+            <a className="w3-button centered-button w3-center"
+               title={"open preview of resource in new tab"}
+               href={resource.url}
+               target="_blank"
+               rel="noreferrer"
+               style={{
+                   display: "block",
+                   "pointer-events":getUrlFor(resource.url)?"all":"none",
+                   "background-color": getUrlFor(resource.url)?"green":"lightgrey",
+                   color: "white"
+               }}
+            >
+                Preview In New Tab
+            </a>
 
         </div>
     </div>
