@@ -1,4 +1,5 @@
 import {useState} from "react";
+import validator from "validator";
 
 export function Resource(props) {
     const item = {
@@ -14,6 +15,14 @@ export function Resource(props) {
             props.parentUpdate(resource)
         }
     }
+
+    function getUrlFor(url) {
+        if (validator.isURL(url)) {
+            return url;
+        }
+        return "";
+    }
+
     return <div>
         <div className="resource-item" title="resource for further reading">
             <label htmlFor={"description"}>Text:</label>
@@ -41,7 +50,7 @@ export function Resource(props) {
                 onChange={onChange}
                 onBlur={onChange}
             />
-            {resource.url && resource.url.startsWith("http") && (
+            {getUrlFor(resource.url) && (
                 <a className="w3-green w3-button centered-button"
                    title={"open preview of resource in new tab"}
                    href={resource.url}
