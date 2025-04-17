@@ -2,7 +2,6 @@ import {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {DecoyList} from "./DecoyList";
 import {ResourceList} from "./ResourceList";
-import {Resource} from "./Resource";
 
 
 export function Question(props) {
@@ -18,19 +17,16 @@ export function Question(props) {
     }
 
     return <form className="w3-card-4 w3-container">
-        <h2 className="w3-green">Edit Question</h2>
-        <p>
-            <label className="input-label w3-green" htmlFor="text">Question To Ask:</label>
-            <input
-                className="w3-input"
-                type="text"
-                name="text"
-                id="text"
-                placeholder="question text"
-                onChange={handleChange}
-                value={doc.text ?? ""}
-            />
-        </p>
+        <label className="input-label w3-green" htmlFor="text">Question To Ask:</label>
+        <input
+            className="w3-input"
+            type="text"
+            name="text"
+            id="text"
+            placeholder="question text"
+            onChange={handleChange}
+            value={doc.text ?? ""}
+        />
 
         <label className="input-label" htmlFor="answer">Correct Answer:</label>
         <input
@@ -42,6 +38,7 @@ export function Question(props) {
             onChange={handleChange}
             value={doc.answer ?? ""}
         />
+        
         <label className="input-label" htmlFor="confirmation">Confirmation:</label>
         <input
             className="w3-input"
@@ -58,7 +55,6 @@ export function Question(props) {
         <br/>
 
         <ResourceList resources={doc.resources || []}/>
-    </form>
-        ;
+    </form>;
 }
 

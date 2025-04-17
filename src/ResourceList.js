@@ -40,7 +40,7 @@ export function ResourceList(props) {
                         role={"listitem"}
                         key={resource.uuid}
                         id={resource.uuid}
-                        className="resource-card w3-card w3-padding w3-container"
+                        className="resource-card w3-card w3-padding w3-panel"
                     >
                         <button
                             className="centered-button w3-button w3-green"
