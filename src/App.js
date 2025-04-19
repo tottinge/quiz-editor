@@ -1,10 +1,13 @@
 import './App.css';
 import {Question} from "./Question";
+import {Quiz} from "./Quiz";
 
 function App() {
   return (
   <>
-  <Question />
+    <Quiz />
+    <hr />
+    <Question/>
     <div className="App">
 
       <header className="App-header">
