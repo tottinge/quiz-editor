@@ -8,6 +8,8 @@ const defaultPreviewUrl = "http://localhost/logo192.png"
 const PREVIEW_ANCHOR_TITLE = /open preview of resource/i
 const URL_FIELD_LABEL = /URL:/
 
+function expectAnchorDisabled(anchor) {
+    return expect(anchor).toHaveStyle("pointer-events:none")}
 
 it("can render an empty resource", () => {
     render(<Resource />);
@@ -53,7 +55,7 @@ it("can enter a valid URL", ()=>{
 it("show no preview link for an empty URL", ()=>{
     render(<Resource />);
     const previewField = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
-    expect(previewField).toHaveAttribute('pointer-events', 'none')
+    expectAnchorDisabled(previewField)
 })
 
 it("presents a preview link with valid url", ()=>{
@@ -67,5 +69,5 @@ it("presents no preview link with invalid url", ()=>{
     render(<Resource url="no prefix no suffix" description="" uuid=""  />);
 
     const previewAnchor = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
-    expect(previewAnchor).toHaveAttribute("disabled")
+    expectAnchorDisabled(previewAnchor)
 })

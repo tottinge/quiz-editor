@@ -24,6 +24,7 @@ export function Resource(props) {
         return "";
     }
 
+    let should_disable = !getUrlFor(resource.url)?.length;
     return <div>
         <div className="resource-item" title="resource for further reading">
             <label htmlFor={"description"}>Text:</label>
