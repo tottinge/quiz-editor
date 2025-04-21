@@ -59,8 +59,8 @@ export function Resource(props) {
                rel="noreferrer"
                style={{
                    display: "block",
-                   "pointer-events":getUrlFor(resource.url)?"all":"none",
-                   "background-color": getUrlFor(resource.url)?"green":"lightgrey",
+                   "pointer-events": getUrlFor(resource.url) ? "all" : "none",
+                   "background-color": getUrlFor(resource.url) ? "green" : "lightgrey",
                    color: "white"
                }}
             >

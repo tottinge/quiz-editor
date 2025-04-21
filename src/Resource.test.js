@@ -5,14 +5,17 @@ import userEvent from "@testing-library/user-event";
 
 const defaultPreviewUrl = "http://localhost/logo192.png"
 
+const PREVIEW_ANCHOR_TITLE = /open preview of resource/i
+const URL_FIELD_LABEL = /URL:/
+
+
 it("can render an empty resource", () => {
     render(<Resource />);
 
     expect(screen.getByPlaceholderText(/description/i)).toBeVisible();
-    expect(screen.getByPlaceholderText(/url/i)).toBeVisible();
+    expect(screen.getByLabelText(URL_FIELD_LABEL)).toBeVisible();
 
 });
-
 
 it("can render a populated resource", () => {
     render(<Resource
@@ -22,7 +25,7 @@ it("can render a populated resource", () => {
     expect(screen.getByDisplayValue(/the poem by/i)).toBeVisible()
     expect(screen.getByDisplayValue(/poetryfoundation/i)).toBeVisible()
 
-    const preview = screen.getByTitle(/preview of resource/i)
+    const preview = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
     expect(preview).toBeVisible();
     expect(preview.href).toContain("poetryfoundation.org");
 });
@@ -42,25 +45,27 @@ it("can enter a valid URL", ()=>{
     const descriptionField = screen.getByLabelText(/url:/i)
     userEvent.type(descriptionField, newUrl)
     userEvent.keyboard("{enter}")
-    const previewField = screen.getByTitle(/preview of/i)
+
+    const previewField = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
     expect(previewField.href).toBe(newUrl)
 })
 
 it("show no preview link for an empty URL", ()=>{
     render(<Resource />);
-    const previewFields = screen.queryAllByTitle(/open preview/i)
-    expect(previewFields).toHaveLength(0)
+    const previewField = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
+    expect(previewField).toHaveAttribute('pointer-events', 'none')
 })
 
 it("presents a preview link with valid url", ()=>{
     render(<Resource url="http://example.com/" description="" uuid=""  />);
-    const previewFields = screen.getAllByTitle(/open preview/i)
+    const previewFields = screen.getAllByTitle(PREVIEW_ANCHOR_TITLE)
     expect(previewFields).toHaveLength(1)
     expect(previewFields[0].href).toBe("http://example.com/")
 })
 
 it("presents no preview link with invalid url", ()=>{
     render(<Resource url="no prefix no suffix" description="" uuid=""  />);
-    const previewFields = screen.queryAllByTitle(/open preview/i)
-    expect(previewFields).toHaveLength(0)
+
+    const previewAnchor = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
+    expect(previewAnchor).toHaveAttribute("disabled")
 })
