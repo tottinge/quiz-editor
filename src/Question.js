@@ -17,6 +17,7 @@ export function Question(props) {
     }
 
     return <form className="w3-card-4 w3-container">
+        <h2>{doc.text??"New Question"}</h2>
         <label className="input-label w3-green" htmlFor="text">Question To Ask:</label>
         <input
             className="w3-input"
