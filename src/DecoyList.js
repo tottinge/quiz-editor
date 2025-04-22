@@ -32,7 +32,7 @@ export function DecoyList(props) {
         setDecoys(decoys.filter(decoy => decoy[0] !== key))
     }
 
-    return <div w3-panel>
+    return <div className="w3-panel">
         <header className="input-label">Decoys</header>
         <input
             type="text"

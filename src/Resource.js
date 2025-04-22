@@ -21,10 +21,12 @@ export function Resource(props) {
         if (url && validator.isURL(url)) {
             return url;
         }
-        return "";
+        return null;
     }
 
-    let should_disable = !getUrlFor(resource.url)?.length;
+    let validatedUrl = getUrlFor(resource.url);
+    let preview_href = validatedUrl?? "./logo.svg";
+
     return <div>
         <div className="resource-item" title="resource for further reading">
             <label htmlFor={"description"}>Text:</label>
@@ -52,16 +54,16 @@ export function Resource(props) {
                 onChange={onChange}
                 onBlur={onChange}
             />
-            <iframe title="preview of resource page" src={getUrlFor(resource.url)}></iframe>
+            <iframe title="preview of resource page" src={validatedUrl}></iframe>
             <a className="w3-button centered-button w3-center"
                title={"open preview of resource in new tab"}
-               href={resource.url}
+               href={preview_href}
                target="_blank"
                rel="noreferrer"
                style={{
                    display: "block",
-                   "pointer-events": getUrlFor(resource.url) ? "all" : "none",
-                   "background-color": getUrlFor(resource.url) ? "green" : "lightgrey",
+                   pointerEvents: validatedUrl ? "all" : "none",
+                   backgroundColor: validatedUrl ? "green" : "lightgrey",
                    color: "white"
                }}
             >
