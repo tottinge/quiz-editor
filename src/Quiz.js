@@ -1,40 +1,37 @@
 import grippy from './grippy.jpeg'
 
+function QuestionSwatch(props) {
+
+    const uptriangle = "🔺"
+    const downtriangle = "🔻"
+
+    function startdrag(e) {
+
+    }
+
+    function expandQuestion(e) {
+
+    }
+
+    return <div className="w3-bar w3-border w3-auto" draggable="true" onDrag={startdrag}>
+        <img src={grippy} className="w3-bar-item  w3-left-align w3-col s1" alt="grippy"/>
+        <span className="w3-bar-item w3-panel w3-col s9" onClick={expandQuestion}>
+            <span className="w3-col s9 w3-panel w3-green">{props.text}</span>
+            <span className="w3-col s1">{downtriangle}</span>
+        </span>
+        <button className="w3-button w3-right-align w3-col s1">&times;</button>
+    </div>
+}
+
 function QuestionList() {
-
-    function startDrag(e, uuid) {
-        console.log("startdrag-->", e.target);
-        e.dataTransfer.setData("UUID", uuid);
-    }
-
     function doDrop(e) {
-        console.log("doDrop of [", e.dataTransfer.getData("UUID"), "]");
-
     }
 
-    function doDragOver(e) {
-        e.preventDefault()
-    }
-
-
-    function QuestionSwatch(props) {
-        const question = props.question;
-        return <div className="w3-bar w3-border"
-                    draggable="true"
-                    id={question.uuid}
-                    onDragStart={(event)=> startDrag(event, question.uuid)}
-            >
-            <img src={grippy} className="w3-bar-item" alt="grippy" style={{height: "2em"}}/>
-            <span className="w3-bar-item">{question.text}</span>
-            <button className="w3-button w3-right">&times;</button>
-        </div>
-    }
-
-    return <div className="w3-bar w3-border" onDrop={doDrop} onDragOver={doDragOver}>
-        <QuestionSwatch question={{text: "Who Ya Gonna Call?", uuid:"1"}} key="a"/>
-        <QuestionSwatch question={{text: "What you talking about?", uuid:"2"}} key="b"/>
-        <QuestionSwatch question={{text: "Where's the beef?",uuid:"3"}} key="c"/>
-        <QuestionSwatch question={{text: "How YOU doing?", uuid:"4"}} key="d"/>
+    return <div className="w3-bar w3-border" onDrop={doDrop}>
+        <QuestionSwatch text={"Who Ya Gonna Call?"}/>
+        <QuestionSwatch text={"What you talking about?"}/>
+        <QuestionSwatch text={"Where's the beef?"}/>
+        <QuestionSwatch text={"How YOU doing?"}/>
     </div>
 }
 
