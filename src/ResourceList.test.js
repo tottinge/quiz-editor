@@ -11,6 +11,10 @@ const inputResources = [
     {description:"React Guide", url:"https://reactjs.org/docs/getting-started.html", uuid: "react" },
 ]
 
+function getListItems() {
+    return screen.getAllByRole("listitem");
+}
+
 it("renders an empty list of resources", ()=> {
     render(<ResourceList/>)
 
@@ -28,16 +32,14 @@ it("renders an empty list of resources", ()=> {
 it("renders a non-empty list of resources", ()=> {
     render(<ResourceList resources={inputResources}/>)
 
-    const resourceHolder = screen.getAllByRole("listitem")
-    expect(resourceHolder).toHaveLength(3)
+    expect(getListItems()).toHaveLength(3)
 })
 
 it("can add a resource", ()=> {
     render(<ResourceList/>)
     const add_button = screen.getByTitle("Add Resource")
     userEvent.click(add_button)
-    const resourceHolder = screen.getAllByRole("listitem")
-    expect(resourceHolder).toHaveLength(1)
+    expect(getListItems()).toHaveLength(1)
 })
 
 it("can remove a resource", ()=> {
@@ -51,8 +53,8 @@ it("can remove a resource", ()=> {
         .map(item => item.value);
     expect(itemsBefore).toEqual(allDescriptions);
 
-    const items = screen.getAllByRole("listitem")
-    const deleteButton = within(items[1]).getByRole("button")
+    var secondListItem = getListItems()[1];
+    const deleteButton = within(secondListItem).getByRole("button")
     userEvent.click(deleteButton)
 
     const itemsAfter = screen

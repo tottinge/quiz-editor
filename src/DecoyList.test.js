@@ -19,20 +19,23 @@ it("renders an empty list of decoys", ()=> {
 
 it("renders a non-empty list of decoys", ()=> {
     render(<DecoyList decoys={["affirmative", "negative"]}/>)
-    const decoys = screen.getAllByRole('listitem')
+    const decoys = getDecoys()
     expect(decoys).toHaveLength(2)
 })
 
-it("can add a decoy when users hit Enter", ()=> {
+function getDecoys() {
+    return screen.getAllByRole('listitem');
+}
+
+it("can add a decoy when users hit Enter", async ()=> {
     const decoyText = "pressed enter to add"
     render(<DecoyList decoys={[]}/>)
 
     const newItemField = screen.getByPlaceholderText(/new decoy/i)
-    userEvent.type(newItemField, decoyText)
-    userEvent.keyboard("{enter}")
+    await userEvent.type(newItemField, decoyText)
 
     // expect one decoy and one input
-    const decoys = screen.getAllByRole('listitem')
+    const decoys = getDecoys()
     expect(decoys).toHaveLength(1)
     expect(decoys[0]).toHaveTextContent(decoyText)
 })
@@ -46,7 +49,7 @@ it("can add a decoy when users tab off the input field", ()=> {
     userEvent.tab()
 
     // expect one decoy and one input
-    const decoys = screen.getAllByRole('listitem')
+    const decoys = getDecoys()
     expect(decoys).toHaveLength(1)
     expect(decoys[0]).toHaveTextContent(decoyText)
 })
