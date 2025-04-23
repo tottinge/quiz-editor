@@ -4,31 +4,30 @@ import {expect, it} from "@jest/globals";
 import userEvent from "@testing-library/user-event";
 
 
-const URL_FIELD_LABEL = /URL:/
-
-
 // Utility/Helper functions
 function getPreviewAnchorTag() {
-    return screen.getByTitle(/open preview of resource/i);
+    return screen.getByRole('link', {name:/preview in new tab/i})
 }
 
 function getDescriptionInput() {
-    return screen.getByPlaceholderText(/description/i);
+    return screen.getByRole("textbox", {name: /text/i})
+}
+
+function getUrlInput() {
+    return screen.getByRole("textbox", {name: /URL:/i});
 }
 
 function expectAnchorDisabled(anchor) {
+    // An anchor isn't disabled per-se, rather its pointer-events are turned off
     return expect(anchor).toHaveStyle("pointer-events:none")
-}
-
-
-function getUrlInput() {
-    return screen.getByLabelText(URL_FIELD_LABEL);
 }
 
 it("can render an empty resource", () => {
     render(<Resource/>);
     expect(getDescriptionInput()).toBeVisible();
     expect(getUrlInput()).toBeVisible();
+
+
 });
 
 it("can render a populated resource", () => {
