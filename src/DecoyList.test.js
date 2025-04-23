@@ -33,6 +33,7 @@ it("can add a decoy when users hit Enter", async ()=> {
 
     const newItemField = screen.getByPlaceholderText(/new decoy/i)
     await userEvent.type(newItemField, decoyText)
+    await userEvent.keyboard("{enter}")
 
     // expect one decoy and one input
     const decoys = getDecoys()
