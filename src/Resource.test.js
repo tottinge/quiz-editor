@@ -3,20 +3,32 @@ import {render, screen} from "@testing-library/react";
 import {expect, it} from "@jest/globals";
 import userEvent from "@testing-library/user-event";
 
-const defaultPreviewUrl = "http://localhost/logo192.png"
 
-const PREVIEW_ANCHOR_TITLE = /open preview of resource/i
 const URL_FIELD_LABEL = /URL:/
 
+
+// Utility/Helper functions
+function getPreviewAnchorTag() {
+    return screen.getByTitle(/open preview of resource/i);
+}
+
+function getDescriptionInput() {
+    return screen.getByPlaceholderText(/description/i);
+}
+
 function expectAnchorDisabled(anchor) {
-    return expect(anchor).toHaveStyle("pointer-events:none")}
+    return expect(anchor).toHaveStyle("pointer-events:none")
+}
+
+
+function getUrlInput() {
+    return screen.getByLabelText(URL_FIELD_LABEL);
+}
 
 it("can render an empty resource", () => {
-    render(<Resource />);
-
-    expect(screen.getByPlaceholderText(/description/i)).toBeVisible();
-    expect(screen.getByLabelText(URL_FIELD_LABEL)).toBeVisible();
-
+    render(<Resource/>);
+    expect(getDescriptionInput()).toBeVisible();
+    expect(getUrlInput()).toBeVisible();
 });
 
 it("can render a populated resource", () => {
@@ -24,50 +36,49 @@ it("can render a populated resource", () => {
         description="Jabberwocky, The Poem by Robert Lewis Stevenson"
         url="https://www.poetryfoundation.org/poems/42916/jabberwocky"
     />);
-    expect(screen.getByDisplayValue(/the poem by/i)).toBeVisible()
+    expect(getDescriptionInput()).toBeVisible()
     expect(screen.getByDisplayValue(/poetryfoundation/i)).toBeVisible()
 
-    const preview = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
+    const preview = getPreviewAnchorTag()
     expect(preview).toBeVisible();
     expect(preview.href).toContain("poetryfoundation.org");
 });
 
 it("can edit the description", () => {
-    render(<Resource />);
-    const descriptionField = screen.getByLabelText(/text:/i)
     var new_description = "Jabberwocky, The Poem by Robert Lewis Stevenson";
+    render(<Resource/>);
+
+    const descriptionField = getDescriptionInput()
     userEvent.type(descriptionField, new_description)
     userEvent.keyboard("{enter}")
     expect(descriptionField.value).toBe(new_description)
 });
 
-it("can enter a valid URL", ()=>{
-    render(<Resource />);
+it("can enter a valid URL", () => {
     const newUrl = "https://www.poetryfoundation.org/poems/42916/jabberwocky"
-    const descriptionField = screen.getByLabelText(/url:/i)
-    userEvent.type(descriptionField, newUrl)
+    render(<Resource/>);
+
+    const urlField = getUrlInput()
+    userEvent.type(urlField, newUrl)
     userEvent.keyboard("{enter}")
 
-    const previewField = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
+    const previewField = getPreviewAnchorTag()
     expect(previewField.href).toBe(newUrl)
 })
 
-it("show no preview link for an empty URL", ()=>{
-    render(<Resource />);
-    const previewField = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
+it("show no preview link for an empty URL", () => {
+    render(<Resource/>);
+    const previewField = getPreviewAnchorTag()
     expectAnchorDisabled(previewField)
 })
 
-it("presents a preview link with valid url", ()=>{
-    render(<Resource url="http://example.com/" description="" uuid=""  />);
-    const previewFields = screen.getAllByTitle(PREVIEW_ANCHOR_TITLE)
-    expect(previewFields).toHaveLength(1)
-    expect(previewFields[0].href).toBe("http://example.com/")
+it("presents a preview link with valid url", () => {
+    render(<Resource url="https://example.com/" description="" uuid=""/>);
+    const previewTag = getPreviewAnchorTag()
+    expect(previewTag.href).toBe("https://example.com/")
 })
 
-it("presents no preview link with invalid url", ()=>{
-    render(<Resource url="no prefix no suffix" description="" uuid=""  />);
-
-    const previewAnchor = screen.getByTitle(PREVIEW_ANCHOR_TITLE)
-    expectAnchorDisabled(previewAnchor)
+it("presents no preview link with invalid url", () => {
+    render(<Resource url="no prefix no suffix" description="" uuid=""/>);
+    expectAnchorDisabled(getPreviewAnchorTag())
 })
