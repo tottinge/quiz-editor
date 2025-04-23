@@ -4,8 +4,8 @@ import "./w3.css";
 
 export function Resource(props) {
     const item = {
-        description: props.description,
-        url: props.url,
+        description: props.description??"",
+        url: props.url??"",
         uuid: props.uuid
     };
     const [resource, setResource] = useState(item)
