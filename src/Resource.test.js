@@ -40,26 +40,27 @@ it("can render a populated resource", () => {
 
     const preview = getPreviewAnchorTag()
     expect(preview).toBeVisible();
-    expect(preview.href).toContain("poetryfoundation.org");
+    expect(preview.getAttribute('href')).toContain("poetryfoundation.org");
 });
 
-it("can edit the description", () => {
-    var new_description = "Jabberwocky, The Poem by Robert Lewis Stevenson";
+it("can edit the description", async () => {
+    const new_description = "Jabberwocky, The Poem by Robert Lewis Stevenson";
     render(<Resource/>);
 
     const descriptionField = getDescriptionInput()
-    userEvent.type(descriptionField, new_description)
-    userEvent.keyboard("{enter}")
-    expect(descriptionField.value).toBe(new_description)
+    await userEvent.type(descriptionField, new_description)
+    // await userEvent.keyboard("{enter}")
+
+    const actual = await getDescriptionInput();
+    expect(actual).toHaveValue(new_description)
 });
 
-it("can enter a valid URL", () => {
+it("can enter a valid URL", async () => {
     const newUrl = "https://www.poetryfoundation.org/poems/42916/jabberwocky"
     render(<Resource/>);
 
     const urlField = getUrlInput()
-    userEvent.type(urlField, newUrl)
-    userEvent.keyboard("{enter}")
+    await userEvent.type(urlField, newUrl)
 
     const previewField = getPreviewAnchorTag()
     expect(previewField.href).toBe(newUrl)
