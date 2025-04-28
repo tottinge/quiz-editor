@@ -1,38 +1,22 @@
-import grippy from './grippy.jpeg'
+import {useDroppable, DndContext} from '@dnd-kit/core'
 
-function QuestionSwatch(props) {
+function QuestionSummary(props) {
+    const {isOver, seNodeRef} = useDroppable({id:props.id})
+    const style = {opacity: isOver ? 0.5 : 1}
 
-    const uptriangle = "🔺"
-    const downtriangle = "🔻"
-
-    function startdrag(e) {
-
-    }
-
-    function expandQuestion(e) {
-
-    }
-
-    return <div className="w3-bar w3-border w3-auto" draggable="true" onDrag={startdrag}>
-        <img src={grippy} className="w3-bar-item  w3-left-align w3-col s1" alt="grippy"/>
-        <span className="w3-bar-item w3-panel w3-col s9" onClick={expandQuestion}>
-            <span className="w3-col s9 w3-panel w3-green">{props.text}</span>
-            <span className="w3-col s1">{downtriangle}</span>
-        </span>
-        <button className="w3-button w3-right-align w3-col s1">&times;</button>
+    return <div className="w3-bar w3-border w3-auto" draggable="true" >
+        {props.question.text}
     </div>
 }
 
 function QuestionList() {
-    function doDrop(e) {
-    }
 
-    return <div className="w3-bar w3-border" onDrop={doDrop}>
-        <QuestionSwatch text={"Who Ya Gonna Call?"}/>
-        <QuestionSwatch text={"What you talking about?"}/>
-        <QuestionSwatch text={"Where's the beef?"}/>
-        <QuestionSwatch text={"How YOU doing?"}/>
-    </div>
+    return <DndContext className="w3-bar w3-border">
+        <QuestionSummary question={{text:"Who Ya Gonna Call?", url:"https://www.npmjs.com/"}}/>
+        <QuestionSummary question={{text:"What you talking about?", url:"https://www.npmjs.com/"}}/>
+        <QuestionSummary question={{text:"Where's the beef?", url:"https://www.npmjs.com/"}}/>
+        <QuestionSummary question={{text:"How YOU doing?", url:"https://www.npmjs.com/"}}/>
+    </DndContext>
 }
 
 export function Quiz() {
