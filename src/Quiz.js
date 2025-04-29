@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function QuestionSummary(props) {
 
-    return <div className="w3-row list-group-item w3-border">
+    return <div className="w3-row list-group-item w3-container">
         <span className="w3-left">{props.question.text}</span>
         <button className="w3-right">&times;</button>
     </div>
