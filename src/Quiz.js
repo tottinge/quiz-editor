@@ -1,22 +1,37 @@
-import {useDroppable, DndContext} from '@dnd-kit/core'
+
+import {ReactSortable} from "react-sortablejs";
+import {useState} from "react";
 
 function QuestionSummary(props) {
-    const {isOver, seNodeRef} = useDroppable({id:props.id})
-    const style = {opacity: isOver ? 0.5 : 1}
 
-    return <div className="w3-bar w3-border w3-auto" draggable="true" >
-        {props.question.text}
+    return <div className="w3-row w3-border">
+        <span className="w3-left">{props.question.text}</span>
+        <button className="w3-right">&times;</button>
     </div>
 }
 
-function QuestionList() {
+const listOfQuestions = [
+    {text: "Who Ya Gonna Call?", uuid: "1", url: "https://www.npmjs.com/"},
+    {text: "What you talking about?", uuid: "2", url: "https://www.wikipedia.org/"},
+    {text: "Where's the beef?", uuid: "3", url: "https://www.example.com/"},
+    {text: "How YOU doing?", uuid: "4", url: "https://www.xkcd.com/"}
+]
 
-    return <DndContext className="w3-bar w3-border">
-        <QuestionSummary question={{text:"Who Ya Gonna Call?", url:"https://www.npmjs.com/"}}/>
-        <QuestionSummary question={{text:"What you talking about?", url:"https://www.npmjs.com/"}}/>
-        <QuestionSummary question={{text:"Where's the beef?", url:"https://www.npmjs.com/"}}/>
-        <QuestionSummary question={{text:"How YOU doing?", url:"https://www.npmjs.com/"}}/>
-    </DndContext>
+function QuestionList() {
+    const [state,setState] = useState(listOfQuestions)
+
+    return <ReactSortable
+        list={state}
+        setList={setState}
+        animation="150"
+        delay="2"
+        swap="true"
+        className="w3-panel"
+    >
+        {state.map((question) => (
+            <QuestionSummary key={question.uuid} question={question}/>
+        ))}
+    </ReactSortable>
 }
 
 export function Quiz() {
