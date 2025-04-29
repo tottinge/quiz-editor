@@ -79,3 +79,12 @@
   margin-left: auto;
   border: none;
 }
+
+.list-group-item {
+  cursor: move;
+}
+
+.question-ghost {
+  opacity: 0.5;
+  background: #C8EBFB;
+}

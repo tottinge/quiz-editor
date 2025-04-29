@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function QuestionSummary(props) {
 
-    return <div className="w3-row w3-border">
+    return <div className="w3-row list-group-item w3-border">
         <span className="w3-left">{props.question.text}</span>
         <button className="w3-right">&times;</button>
     </div>
@@ -17,19 +17,23 @@ const listOfQuestions = [
     {text: "How YOU doing?", uuid: "4", url: "https://www.xkcd.com/"}
 ]
 
-function QuestionList() {
+function QuestionList(props) {
     const [state,setState] = useState(listOfQuestions)
 
     return <ReactSortable
+        swap
         list={state}
         setList={setState}
-        animation="150"
-        delay="2"
-        swap="true"
+        animation={200}
+        delay={2}
         className="w3-panel"
+        ghostClass={"question-ghost"}
     >
         {state.map((question) => (
-            <QuestionSummary key={question.uuid} question={question}/>
+            <QuestionSummary
+                key={question.uuid}
+                question={question}
+            />
         ))}
     </ReactSortable>
 }
