@@ -40,7 +40,7 @@ function QuestionList(props) {
 
 export function Quiz() {
     return <div>
-        Quiz
+        <h1>Quiz</h1>
         <QuestionList/>
     </div>
 }
