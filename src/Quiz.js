@@ -24,7 +24,7 @@ function QuestionList(props) {
         swap
         list={state}
         setList={setState}
-        animation={200}
+        animation={150}
         delay={2}
         className="w3-panel"
         ghostClass={"question-ghost"}
