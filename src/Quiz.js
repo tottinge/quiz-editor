@@ -1,12 +1,11 @@
-
 import {ReactSortable} from "react-sortablejs";
 import {useState} from "react";
 
 function QuestionSummary(props) {
 
-    return <div className="w3-row list-group-item w3-container">
-        <span className="w3-left">{props.question.text}</span>
-        <button className="w3-right">&times;</button>
+    return <div className="w3-bar list-group-item w3-card">
+        <span className="w3-bar-item">&nbsp;&nbsp;{props.question.text}</span>
+        <button className="w3-right w3-bar-item">&times;</button>
     </div>
 }
 
@@ -18,16 +17,17 @@ const listOfQuestions = [
 ]
 
 function QuestionList(props) {
-    const [state,setState] = useState(listOfQuestions)
+    const [state, setState] = useState(listOfQuestions)
 
     return <ReactSortable
         swap
         list={state}
         setList={setState}
-        animation={150}
         delay={2}
-        className="w3-panel"
+        className="w3-container"
+        animation={150}
         ghostClass={"question-ghost"}
+        // handle='.handle'
     >
         {state.map((question) => (
             <QuestionSummary
