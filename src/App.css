@@ -80,6 +80,8 @@
   border: none;
 }
 
+
+/*Stuff for the sortable list*/
 .list-group-item {
   user-select: none;
 }
@@ -90,16 +92,14 @@
 }
 
 .handle {
-  color: orangered;
   cursor: grab;
   padding: 4px;
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
   display: inline-block;
 }
 .handle.hover{
   cursor: grabbing;
 }
-.handle::before {
-  content: "\2630";
-  font-size: 16px;
-  margin-right: 4px;
-}
+
