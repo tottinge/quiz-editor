@@ -3,11 +3,13 @@ import {useState} from "react";
 
 
 function QuestionSummary(props) {
-
-    return <span className="w3-bar list-group-item w3-card">
-        <span className="w3-bar-item">&nbsp;&nbsp;{props.question.text}</span>
+    const question = props.question
+    return <div className="drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
+        <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle" />
+        <span className="w3-bar-item">{question.text}</span>
         <button className="w3-right w3-bar-item">&times;</button>
-    </span>
+    </div>
+
 }
 
 const listOfQuestions = [
@@ -31,11 +33,7 @@ function QuestionList(props) {
         >
 
             {state.map((question) => (
-                <div className="drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
-                    <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle" />
-                    <span className="w3-bar-item">{question.text}</span>
-                    <button className="w3-right w3-bar-item">&times;</button>
-                </div>
+                <QuestionSummary question={question} key={question.uuid}/>
             ))}
         </ReactSortable>
     </>
