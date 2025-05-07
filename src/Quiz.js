@@ -27,7 +27,6 @@ function QuestionList(props) {
             className="w3-container"
             animation={150}
             ghostClass={"question-ghost"}
-            // useDragHandle={true}
             handle={".handle"}
         >
 

@@ -94,10 +94,11 @@
 .handle {
   cursor: grab;
   padding: 4px;
-  width: 2em;
-  height: 2em;
+  width: 2.5em;
+  height: 2.5em;
   margin-right: 1em;
   display: inline-block;
+  vertical-align: baseline;
 }
 .handle.hover{
   cursor: grabbing;
