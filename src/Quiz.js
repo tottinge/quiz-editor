@@ -1,13 +1,16 @@
 import {ReactSortable} from "react-sortablejs";
 import {useState} from "react";
+import "./w3.css";
+import "./App.css";
+
 
 
 function QuestionSummary(props) {
     const question = props.question
-    return <div className="drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
+    return <div className="quiz-control drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
         <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle" />
-        <span className="w3-bar-item">{question.text}</span>
-        <button className="w3-right w3-bar-item">&times;</button>
+        <span className="w3-bar-item w3-cell-middle">{question.text}</span>
+        <img src="/delete.png" className="w3-right w3-bar-item"/>
     </div>
 
 }
