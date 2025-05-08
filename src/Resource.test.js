@@ -3,8 +3,6 @@ import {render, screen} from "@testing-library/react";
 import {expect, it} from "@jest/globals";
 import userEvent from "@testing-library/user-event";
 
-
-// Utility/Helper functions
 function getPreviewAnchorTag() {
     return screen.getByRole('link', {name:/preview in new tab/i})
 }
