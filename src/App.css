@@ -112,9 +112,30 @@
     .handle.hover {
         cursor: grabbing;
     }
+
+    input[type=img]{
+        width: 3em;
+        height: 3em;
+        margin-bottom: 1em;
+    }
 }
 
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    .quiz-img-preview {
+        width:3em;
+        height:3em;
+        margin-bottom: 1em;
+        float: right;
+    }
 
+}
+
+label {
+    background-color: #4CAF50;
+    color: white;
+}
 
 
 
