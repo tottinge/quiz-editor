@@ -2,6 +2,7 @@ import {useState} from "react";
 import {ReactSortable} from "react-sortablejs";
 import {v4 as uuidv4} from "uuid";
 import PropTypes from "prop-types";
+import {Question} from "./Question";
 
 function QuestionSummary(props) {
     QuestionSummary.propTypes = {
@@ -11,11 +12,18 @@ function QuestionSummary(props) {
         }).isRequired
     };
     const question = props.question ?? {text: '', uuid: uuidv4()}
-    return <div className="quiz-control drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
+    const [isOpen, setIsOpen] = useState(false)
+    return <div className="accordion-itemn quiz-control drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
         <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle"/>
         <span className="w3-bar-item w3-cell-middle">{question.text}</span>
         <img src="/delete.png" alt="delete question" className="w3-right w3-bar-item"/>
-        <img src="/drop-down.png" alt="edit question" className="w3-right w3-bar-item"/>
+        <img
+            src="/drop-down.png"
+            alt="edit question"
+            onClick={() => setIsOpen(!isOpen)}
+            className="w3-right w3-bar-item"
+        />
+        {isOpen && <Question question={props.question}></Question>}
     </div>
 
 }

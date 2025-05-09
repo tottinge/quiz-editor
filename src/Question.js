@@ -6,7 +6,9 @@ import {ResourceList} from "./ResourceList";
 
 export function Question(props) {
 
-    const [doc, setDoc] = useState(props.item ?? {question_id: uuidv4()})
+    const [doc, setDoc] = useState(
+        props.item ?? {question_id: uuidv4()}
+    )
 
     function handleChange(e) {
         const newDoc = {
