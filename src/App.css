@@ -56,7 +56,6 @@
 
 .decoy-item {
     padding-top: 5px;
-    /*background-color: red;*/
 }
 
 .resource-container {
@@ -72,9 +71,6 @@
     width: 100%;
 }
 
-.resource-item {
-    /*min-width: 350px;*/
-}
 
 .centered-button {
     display: block;
@@ -93,31 +89,28 @@
     background: #C8EBFB;
 }
 
-.handle {
-    cursor: grab;
-    display: inline-block;
-}
 
-.handle.hover {
-    cursor: grabbing;
-}
 
 .quiz-control {
-    /*background-color: orange;*/
     vertical-align: middle;
 
     span {
-        /*background-color: red;*/
         font-size: large;
     }
 
     img {
-        /*background-color: green;*/
-        /*border-color: #0074d9;*/
         padding: 4px;
         width: 2.5em;
         height: 2.5em;
         margin-right: 1em;
+        cursor: pointer;
+    }
+    .handle {
+        cursor: grab;
+        display: inline-block;
+    }
+    .handle.hover {
+        cursor: grabbing;
     }
 }
 

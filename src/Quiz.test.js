@@ -4,7 +4,7 @@ import {Quiz} from "./Quiz";
 
 it("renders a quiz with no questions", ()=>{
     render(<Quiz />)
-    expect(screen.getByRole("heading")).toBeInTheDocument()
+    expect(screen.getByRole("heading", {name:/Quiz/})).toBeInTheDocument()
 })
 
 it("renders a quiz with questions", ()=>{
