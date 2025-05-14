@@ -12,7 +12,7 @@ export const Empty = {
 }
 
 // Render a populated quiz
-export const Default = {
+export const Populated = {
   args: {
     quiz: {
       shortname: "Hardcoded",
