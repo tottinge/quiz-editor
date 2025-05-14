@@ -1,10 +1,10 @@
 import {useState} from "react";
 import "./w3.css";
 import "./App.css";
-import {QuestionList, listOfQuestions} from "./QuestionList";
+import {QuestionListView, listOfQuestions} from "./QuestionListView";
 import validator from "validator";
 
-export function Quiz(props) {
+export function QuizView(props) {
     const empty_quiz = {
         shortname: "New Quiz",
         description: "",
@@ -39,6 +39,6 @@ export function Quiz(props) {
         <label htmlFor={"img_url"}>Image URL:</label>
         <input value={quiz.img_url} type="url" id="img_url" name="img_url"
                onChange={updateQuiz}/>
-        <QuestionList/>
+        <QuestionListView/>
     </div>
 }

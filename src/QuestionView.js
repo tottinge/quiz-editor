@@ -1,10 +1,10 @@
 import {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import {DecoyList} from "./DecoyList";
-import {ResourceList} from "./ResourceList";
+import {ResourceListView} from "./ResourceListView";
 
 
-export function Question(props) {
+export function QuestionView(props) {
 
     const [doc, setDoc] = useState(
         props.item ?? {question_id: uuidv4()}
@@ -57,7 +57,7 @@ export function Question(props) {
 
         <br/>
 
-        <ResourceList resources={doc.resources || []}/>
+        <ResourceListView resources={doc.resources || []}/>
     </form>;
 }
 

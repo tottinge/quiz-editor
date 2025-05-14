@@ -1,7 +1,7 @@
-import { Question } from './Question';
+import { QuestionView } from './QuestionView';
 
 const meta = {
-  component: Question,
+  component: QuestionView,
 };
 
 export default meta;

@@ -1,9 +1,9 @@
 import {useState} from "react";
 import {v4 as uuidv4} from "uuid";
-import {Resource} from "./Resource";
+import {ResourceView} from "./ResourceView";
 import "./w3.css";
 
-export function ResourceList(props) {
+export function ResourceListView(props) {
     const [resources, setResources] = useState((props.resources ?? []))
 
     function addResource(e) {
@@ -52,8 +52,8 @@ export function ResourceList(props) {
                             }}>
                             &times;
                         </button>
-                        <Resource description={resource.description} url={resource.url} uuid={resource.uuid}
-                                  parentUpdate={(resource) => updateResource(resource)}/>
+                        <ResourceView description={resource.description} url={resource.url} uuid={resource.uuid}
+                                      parentUpdate={(resource) => updateResource(resource)}/>
                     </div>
                 })
             }

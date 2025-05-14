@@ -1,4 +1,4 @@
-import {Resource} from "./Resource";
+import {ResourceView} from "./ResourceView";
 import {render, screen} from "@testing-library/react";
 import {expect, it} from "@jest/globals";
 import userEvent from "@testing-library/user-event";
@@ -21,7 +21,7 @@ function expectAnchorDisabled(anchor) {
 }
 
 it("can render an empty resource", () => {
-    render(<Resource/>);
+    render(<ResourceView/>);
     expect(getDescriptionInput()).toBeVisible();
     expect(getUrlInput()).toBeVisible();
 
@@ -29,7 +29,7 @@ it("can render an empty resource", () => {
 });
 
 it("can render a populated resource", () => {
-    render(<Resource
+    render(<ResourceView
         description="Jabberwocky, The Poem by Robert Lewis Stevenson"
         url="https://www.poetryfoundation.org/poems/42916/jabberwocky"
     />);
@@ -43,7 +43,7 @@ it("can render a populated resource", () => {
 
 it("can edit the description", async () => {
     const new_description = "Jabberwocky, The Poem by Robert Lewis Stevenson";
-    render(<Resource/>);
+    render(<ResourceView/>);
 
     const descriptionField = getDescriptionInput()
     await userEvent.type(descriptionField, new_description)
@@ -55,7 +55,7 @@ it("can edit the description", async () => {
 
 it("can enter a valid URL", async () => {
     const newUrl = "https://www.poetryfoundation.org/poems/42916/jabberwocky"
-    render(<Resource/>);
+    render(<ResourceView/>);
 
     const urlField = getUrlInput()
     await userEvent.type(urlField, newUrl)
@@ -65,18 +65,18 @@ it("can enter a valid URL", async () => {
 })
 
 it("show no preview link for an empty URL", () => {
-    render(<Resource/>);
+    render(<ResourceView/>);
     const previewField = getPreviewAnchorTag()
     expectAnchorDisabled(previewField)
 })
 
 it("presents a preview link with valid url", () => {
-    render(<Resource url="https://example.com/" description="" uuid=""/>);
+    render(<ResourceView url="https://example.com/" description="" uuid=""/>);
     const previewTag = getPreviewAnchorTag()
     expect(previewTag.href).toBe("https://example.com/")
 })
 
 it("presents no preview link with invalid url", () => {
-    render(<Resource url="no prefix no suffix" description="" uuid=""/>);
+    render(<ResourceView url="no prefix no suffix" description="" uuid=""/>);
     expectAnchorDisabled(getPreviewAnchorTag())
 })

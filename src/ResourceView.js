@@ -2,7 +2,7 @@ import {useState} from "react";
 import validator from "validator";
 import "./w3.css";
 
-export function Resource(props) {
+export function ResourceView(props) {
     const item = {
         description: props.description??"",
         url: props.url??"",

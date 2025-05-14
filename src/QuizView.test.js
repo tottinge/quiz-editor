@@ -1,14 +1,14 @@
 import {expect, it} from "@jest/globals";
 import {render, screen} from "@testing-library/react";
-import {Quiz} from "./Quiz";
+import {QuizView} from "./QuizView";
 
 it("renders a quiz with no questions", ()=>{
-    render(<Quiz />)
+    render(<QuizView />)
     expect(screen.getByRole("heading", {name:/Quiz/})).toBeInTheDocument()
 })
 
 it("renders a quiz with questions", ()=>{
-    render(<Quiz />)
+    render(<QuizView />)
 })
 
 it("can add a question", ()=>{})

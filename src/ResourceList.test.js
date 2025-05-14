@@ -1,6 +1,6 @@
 // noinspection JSCheckFunctionSignatures
 
-import {ResourceList} from "./ResourceList";
+import {ResourceListView} from "./ResourceListView";
 import {render, screen, within} from "@testing-library/react";
 import {expect, it} from '@jest/globals';
 import userEvent from "@testing-library/user-event";
@@ -16,7 +16,7 @@ function getListItems() {
 }
 
 it("renders an empty list of resources", ()=> {
-    render(<ResourceList/>)
+    render(<ResourceListView/>)
 
     const title = screen.getByText(/resource list/i)
     expect(title).toBeInTheDocument()
@@ -30,13 +30,13 @@ it("renders an empty list of resources", ()=> {
 })
 
 it("renders a non-empty list of resources", ()=> {
-    render(<ResourceList resources={inputResources}/>)
+    render(<ResourceListView resources={inputResources}/>)
 
     expect(getListItems()).toHaveLength(3)
 })
 
 it("can add a resource", ()=> {
-    render(<ResourceList/>)
+    render(<ResourceListView/>)
     const add_button = screen.getByTitle("Add Resource")
     userEvent.click(add_button)
     expect(getListItems()).toHaveLength(1)
@@ -46,7 +46,7 @@ it("can remove a resource", ()=> {
     const patternForDescriptionText = /Title for recommended reading/i;
     const allDescriptions = inputResources.map((resource) => resource.description);
 
-    render(<ResourceList resources={inputResources}/>)
+    render(<ResourceListView resources={inputResources}/>)
 
     const itemsBefore = screen
         .getAllByTitle(patternForDescriptionText)

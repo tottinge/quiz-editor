@@ -1,19 +1,19 @@
 import {fireEvent, render, screen} from '@testing-library/react'
-import {Question} from "./Question";
+import {QuestionView} from "./QuestionView";
 import { test, expect } from '@jest/globals';
 
 test('it renders', () => {
     const text_question = {
         text: "What is your name?"
     }
-    render(<Question item={text_question}/>);
+    render(<QuestionView item={text_question}/>);
     const element = screen.getByDisplayValue(/what is your name/i);
     expect(element).toBeInTheDocument();
     expect(element).toBeVisible();
 })
 
 test('it renders with no content', () => {
-    render(<Question/>);
+    render(<QuestionView/>);
 })
 
 test('it handles text field updates', ()=> {
@@ -21,7 +21,7 @@ test('it handles text field updates', ()=> {
     const old_question = {
         text: 'What is your name?'
     }
-    render(<Question item={old_question} />);
+    render(<QuestionView item={old_question} />);
     const inputControl = screen.getByLabelText(/question/i)
     fireEvent.change(inputControl, {target: {value: new_question_text}})
     expect(inputControl.value).toBe(new_question_text)

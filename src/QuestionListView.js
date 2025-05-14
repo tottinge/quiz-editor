@@ -2,7 +2,7 @@ import {useState} from "react";
 import {ReactSortable} from "react-sortablejs";
 import {v4 as uuidv4} from "uuid";
 import PropTypes from "prop-types";
-import {Question} from "./Question";
+import {QuestionView} from "./QuestionView";
 
 function QuestionSummary(props) {
     QuestionSummary.propTypes = {
@@ -23,12 +23,12 @@ function QuestionSummary(props) {
             onClick={() => setIsOpen(!isOpen)}
             className="w3-right w3-bar-item"
         />
-        {isOpen && <Question question={props.question}></Question>}
+        {isOpen && <QuestionView question={props.question}></QuestionView>}
     </div>
 
 }
 
-export function QuestionList(props) {
+export function QuestionListView(props) {
     const [state, setState] = useState(listOfQuestions ?? [])
 
     return <>
