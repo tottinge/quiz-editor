@@ -1,6 +1,6 @@
 import {QuestionListView} from "./QuestionListView";
 import {render, screen} from "@testing-library/react";
-import {expect, it} from "@jest/globals";
+import {expect, it, jest} from "@jest/globals";
 import userEvent from "@testing-library/user-event";
 
 function getQuestionElements() {
@@ -37,3 +37,13 @@ it("maintains order of questions", () => {
     expect(items[1]).toHaveTextContent("Second question");
     expect(items[2]).toHaveTextContent("Third question");
 });
+
+it("adds a new question when add button is clicked", async () => {
+    render(<QuestionListView questions={[]}/>);
+
+    await userEvent.click(screen.getByAltText('add question'));
+    expect(getQuestionElements()).toHaveLength(1);
+
+});
+
+

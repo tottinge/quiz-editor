@@ -11,8 +11,9 @@ function QuestionSummary(props) {
             uuid: PropTypes.string.isRequired
         }).isRequired
     };
+
     const question = props.question ?? {text: '', uuid: uuidv4()}
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(!!props.question)
     return <div role="listitem" className="accordion-itemn quiz-control drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
         <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle"/>
         <span className="w3-bar-item w3-cell-middle">{question.text}</span>
@@ -38,6 +39,7 @@ export function QuestionListView(props) {
                 src="./add.png"
                 alt="add question"
                 className="w3-right w3-bar-item"
+                onClick={() => setState(state.concat([{text: "", uuid: uuidv4()}]))}
             />
         </h2>
         <ReactSortable
