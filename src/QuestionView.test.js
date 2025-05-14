@@ -6,7 +6,7 @@ test('it renders', () => {
     const text_question = {
         text: "What is your name?"
     }
-    render(<QuestionView item={text_question}/>);
+    render(<QuestionView question={text_question}/>);
     const element = screen.getByDisplayValue(/what is your name/i);
     expect(element).toBeInTheDocument();
     expect(element).toBeVisible();

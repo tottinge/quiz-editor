@@ -13,7 +13,7 @@ function QuestionSummary(props) {
     };
     const question = props.question ?? {text: '', uuid: uuidv4()}
     const [isOpen, setIsOpen] = useState(false)
-    return <div className="accordion-itemn quiz-control drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
+    return <div role="listitem" className="accordion-itemn quiz-control drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
         <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle"/>
         <span className="w3-bar-item w3-cell-middle">{question.text}</span>
         <img src="/delete.png" alt="delete question" className="w3-right w3-bar-item"/>

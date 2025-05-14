@@ -6,9 +6,9 @@ import {expect, it} from '@jest/globals';
 import userEvent from "@testing-library/user-event";
 
 const inputResources = [
-    {description:"The mother ship", url:"http://industriallogic.com/", uuid: "mother" },
-    {description:"Jabberwocky Poem", url:"https://www.poetryfoundation.org/poems/42916/jabberwocky", uuid: "jabberwocky" },
-    {description:"React Guide", url:"https://reactjs.org/docs/getting-started.html", uuid: "react" },
+    {text:"The mother ship", url:"http://industriallogic.com/", uuid: "mother" },
+    {text:"Jabberwocky Poem", url:"https://www.poetryfoundation.org/poems/42916/jabberwocky", uuid: "jabberwocky" },
+    {text:"React Guide", url:"https://reactjs.org/docs/getting-started.html", uuid: "react" },
 ]
 
 function getListItems() {
@@ -44,7 +44,7 @@ it("can add a resource", ()=> {
 
 it("can remove a resource", ()=> {
     const patternForDescriptionText = /Title for recommended reading/i;
-    const allDescriptions = inputResources.map((resource) => resource.description);
+    const allDescriptions = inputResources.map((resource) => resource.text);
 
     render(<ResourceListView resources={inputResources}/>)
 

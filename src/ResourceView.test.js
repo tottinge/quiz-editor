@@ -4,7 +4,7 @@ import {expect, it} from "@jest/globals";
 import userEvent from "@testing-library/user-event";
 
 function getPreviewAnchorTag() {
-    return screen.getByRole('link', {name:/preview in new tab/i})
+    return screen.getByRole('link', {name: /preview in new tab/i})
 }
 
 function getDescriptionInput() {
@@ -30,8 +30,11 @@ it("can render an empty resource", () => {
 
 it("can render a populated resource", () => {
     render(<ResourceView
-        description="Jabberwocky, The Poem by Robert Lewis Stevenson"
-        url="https://www.poetryfoundation.org/poems/42916/jabberwocky"
+        resource={{
+            text: "Jabberwocky, The Poem by Robert Lewis Stevenson",
+            url: "https://www.poetryfoundation.org/poems/42916/jabberwocky"
+        }}
+
     />);
     expect(getDescriptionInput()).toBeVisible()
     expect(screen.getByDisplayValue(/poetryfoundation/i)).toBeVisible()
@@ -71,12 +74,14 @@ it("show no preview link for an empty URL", () => {
 })
 
 it("presents a preview link with valid url", () => {
-    render(<ResourceView url="https://example.com/" description="" uuid=""/>);
+    render(<ResourceView
+        resource={{url: "https://example.com/", text: "", uuid: ""}}
+    />);
     const previewTag = getPreviewAnchorTag()
     expect(previewTag.href).toBe("https://example.com/")
 })
 
 it("presents no preview link with invalid url", () => {
-    render(<ResourceView url="no prefix no suffix" description="" uuid=""/>);
+    render(<ResourceView resource={{url: "no prefix no suffix", text: "", uuid: ""}}/>);
     expectAnchorDisabled(getPreviewAnchorTag())
 })
