@@ -1,7 +1,7 @@
 import {useState} from "react";
 import "./w3.css";
 import "./App.css";
-import {QuestionListView, listOfQuestions} from "./QuestionListView";
+import {QuestionListView} from "./QuestionListView";
 import validator from "validator";
 
 export function QuizView(props) {
@@ -9,7 +9,7 @@ export function QuizView(props) {
         shortname: "New Quiz",
         description: "",
         img_url: "",
-        questions: listOfQuestions
+        questions: []
     }
     const [quiz, setQuiz] = useState(props.quiz || {...empty_quiz})
 

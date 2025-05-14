@@ -6,6 +6,12 @@ const meta = {
 
 export default meta;
 
+
+// Render an empty quiz
+export const Empty = {
+}
+
+// Render a populated quiz
 export const Default = {
   args: {
     quiz: {
