@@ -52,7 +52,7 @@ export function ResourceListView(props) {
                             }}>
                             &times;
                         </button>
-                        <ResourceView description={resource.description} url={resource.url} uuid={resource.uuid}
+                        <ResourceView resource = {resource}
                                       parentUpdate={(resource) => updateResource(resource)}/>
                     </div>
                 })

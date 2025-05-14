@@ -3,12 +3,8 @@ import validator from "validator";
 import "./w3.css";
 
 export function ResourceView(props) {
-    const item = {
-        description: props.description??"",
-        url: props.url??"",
-        uuid: props.uuid
-    };
-    const [resource, setResource] = useState(item)
+
+    const [resource, setResource] = useState(props.resource ?? {})
 
     const onChange = (e) => {
         setResource({...resource, [e.target.name]: e.target.value})
@@ -25,19 +21,19 @@ export function ResourceView(props) {
     }
 
     let validatedUrl = getUrlFor(resource.url);
-    let preview_href = validatedUrl?? "./logo.svg";
+    let preview_href = validatedUrl ?? "./logo.svg";
 
     return <div>
         <div className="resource-item" title="resource for further reading">
-            <label htmlFor={"description"}>Text:</label>
+            <label htmlFor={"text"}>Text:</label>
             <input
                 className="w3-input"
-                id="description"
-                name="description"
+                id="text"
+                name="text"
                 placeholder="Enter description here:"
                 title="Title for recommended reading"
                 type='text'
-                value={resource.description}
+                value={resource.text}
                 onChange={onChange}
                 onBlur={onChange}
             />

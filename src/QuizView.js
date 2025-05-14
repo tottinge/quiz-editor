@@ -39,6 +39,7 @@ export function QuizView(props) {
         <label htmlFor={"img_url"}>Image URL:</label>
         <input value={quiz.img_url} type="url" id="img_url" name="img_url"
                onChange={updateQuiz}/>
-        <QuestionListView/>
+
+        <QuestionListView questions={quiz.questions}/>
     </div>
 }

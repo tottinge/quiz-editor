@@ -29,7 +29,7 @@ function QuestionSummary(props) {
 }
 
 export function QuestionListView(props) {
-    const [state, setState] = useState(listOfQuestions ?? [])
+    const [state, setState] = useState(props.questions ?? [])
 
     return <>
         <h2>Questions

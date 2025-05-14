@@ -7,7 +7,7 @@ import {ResourceListView} from "./ResourceListView";
 export function QuestionView(props) {
 
     const [doc, setDoc] = useState(
-        props.item ?? {question_id: uuidv4()}
+        props.question ?? {question_id: uuidv4()}
     )
 
     function handleChange(e) {
@@ -57,7 +57,7 @@ export function QuestionView(props) {
 
         <br/>
 
-        <ResourceListView resources={doc.resources || []}/>
+        <ResourceListView resources={doc.resources ?? []}/>
     </form>;
 }
 
