@@ -4,10 +4,10 @@ import {DecoyList} from "./DecoyList";
 import {ResourceListView} from "./ResourceListView";
 
 
-export function QuestionView(props) {
+export function QuestionView(question, updateParent) {
 
     const [doc, setDoc] = useState(
-        props.question ?? {question_id: uuidv4()}
+        question ?? {question_id: uuidv4()}
     )
 
     function handleChange(e) {
@@ -16,10 +16,10 @@ export function QuestionView(props) {
             [e.target.name]: e.target.value
         };
         setDoc(newDoc)
+        // updateParent(newDoc)
     }
 
     return <form className="w3-card-4 w3-container">
-        <h2>{doc.text??"New Question"}</h2>
         <label className="input-label w3-green" htmlFor="text">Question To Ask:</label>
         <input
             className="w3-input"

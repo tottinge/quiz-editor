@@ -6,6 +6,24 @@ const meta = {
 
 export default meta;
 
-export const Default = {
+export const Empty = {
   args: {}
+};
+
+export const Populated = {
+  args: {
+    questions: [
+      {
+        text: "What is your name?",
+        answer: "John",
+        confirmation: "John is the correct answer",
+        decoys: ["Jane", "Jill", "Johnny"],
+        resources: [
+          {
+            text: "Title for recommended reading",
+          }
+        ]
+      }
+    ]
+  }
 };

@@ -113,10 +113,11 @@
         cursor: grabbing;
     }
 
-    input[type=img]{
-        width: 3em;
-        height: 3em;
+    input[type=image]{
+        width: 4em;
         margin-bottom: 1em;
+        border: 1px solid #ccc;
+        /*background-color: #4CAF50;*/
     }
 }
 

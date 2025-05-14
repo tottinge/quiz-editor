@@ -4,39 +4,58 @@ import {v4 as uuidv4} from "uuid";
 import PropTypes from "prop-types";
 import {QuestionView} from "./QuestionView";
 
-function QuestionSummary(props) {
-    QuestionSummary.propTypes = {
-        question: PropTypes.shape({
-            text: PropTypes.string.isRequired,
-            uuid: PropTypes.string.isRequired
-        }).isRequired
-    };
+export function QuestionSummary({question, updateParent}) {
+    ;
 
-    const question = props.question ?? {text: '', uuid: uuidv4()}
-    const [isOpen, setIsOpen] = useState(!!props.question)
-    return <div role="listitem" className="accordion-itemn quiz-control drag-item w3-bar w3-card" draggable="true" key={question.uuid}>
+    const [isOpen, setIsOpen] = useState(question ? false : true)
+
+    function onSave() {
+        updateParent(question)
+    }
+
+    return <div role="listitem"
+                className="accordion-itemn quiz-control drag-item w3-bar w3-card"
+                draggable="true"
+                key={question.uuid}>
         <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle"/>
         <span className="w3-bar-item w3-cell-middle">{question.text}</span>
-        <img src="/delete.png" alt="delete question" className="w3-right w3-bar-item"/>
-        <img
-            src="/drop-down.png"
-            alt="edit question"
-            onClick={() => setIsOpen(!isOpen)}
-            className="w3-right w3-bar-item"
+        <input type={"image"}
+               alt="delete question"
+               src={"/delete.png"}
+               className="w3-right w3-bar-item"
         />
-        {isOpen && <QuestionView question={props.question}></QuestionView>}
+        <input type={"image"}
+               alt="edit question"
+               src={"/drop-down.png"}
+               onClick={() => setIsOpen(!isOpen)}
+               className="w3-right w3-bar-item"
+        />
+        {isOpen && <QuestionView question={question} updateParent={onSave}></QuestionView>}
     </div>
 
 }
 
 export function QuestionListView(props) {
+    QuestionListView.propTypes = {
+        questions: PropTypes.arrayOf(PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            uuid: PropTypes.string.isRequired
+        }))
+    };
     const [state, setState] = useState(props.questions ?? [])
+
+    function handleUpdate(question) {
+        const questions = state.map((q) => {
+            return (q.uuid === question.uuid) ? question : q
+        })
+        setState(questions)
+    }
 
     return <>
         <h2>Questions
             <input
                 type="image"
-                src="./add.png"
+                src={"./add.png"}
                 alt="add question"
                 className="w3-right w3-bar-item"
                 onClick={() => setState(state.concat([{text: "", uuid: uuidv4()}]))}
@@ -51,15 +70,9 @@ export function QuestionListView(props) {
             handle={".handle"}
         >
             {state.map((question) => (
-                <QuestionSummary question={question} key={question.uuid}/>
+                <QuestionSummary question={question} key={question.uuid} updateParent={handleUpdate}/>
             ))}
         </ReactSortable>
     </>
 }
 
-export const listOfQuestions = [
-    {text: "Who Ya Gonna Call?", uuid: "1"},
-    {text: "What you talking about?", uuid: "2"},
-    {text: "Where's the beef?", uuid: "3"},
-    {text: "How YOU doing?", uuid: "4"}
-]
