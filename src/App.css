@@ -42,6 +42,10 @@
     }
 }
 
+input[type=image] {
+    transition: all .5s ease;
+}
+
 
 .decoy-container {
     display: grid;
@@ -87,6 +91,7 @@
     display: block;
     margin-left: auto;
     border: none;
+    transition: ease-in-out .5s;
 }
 
 
@@ -100,7 +105,13 @@
     background: #C8EBFB;
 }
 
-
+input[type=image] {
+    margin-bottom: 1em;
+    transition: all .5s ease;
+}
+input[type=image]:hover {
+    transform: scale(1.2);
+}
 .quiz-control {
     vertical-align: middle;
 
@@ -125,10 +136,6 @@
         cursor: grabbing;
     }
 
-    input[type=image] {
-        width: 4em;
-        margin-bottom: 1em;
-    }
 }
 
 .quiz-container {
