@@ -7,7 +7,7 @@ import {QuestionView} from "./QuestionView";
 export function QuestionSummary({question, updateParent}) {
     ;
 
-    const [isOpen, setIsOpen] = useState(question ? false : true)
+    const [isOpen, setIsOpen] = useState(question.text ? false : true)
 
     function onSave() {
         updateParent(question)
