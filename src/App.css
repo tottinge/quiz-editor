@@ -110,12 +110,6 @@ input[type=image]:hover {
     transform: scale(1.2);
 }
 .quiz-control {
-    vertical-align: middle;
-
-    span {
-        font-size: large;
-    }
-
     img {
         padding: 4px;
         width: 2.5em;
@@ -137,6 +131,13 @@ input[type=image]:hover {
         transform: scale(1.2);
         cursor: grabbing;
     }
+    .qs__title {
+        font-size: x-large;
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
 
 }
 
@@ -150,8 +151,9 @@ input[type=image]:hover {
         margin-bottom: 1em;
         float: right;
     }
-
 }
+
+
 
 label {
     background-color: teal;

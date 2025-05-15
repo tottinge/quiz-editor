@@ -4,7 +4,6 @@ import "./w3.css";
 
 export function DecoyList(props) {
     const listToManage = (props.decoys ?? []).map(decoy => [uuidv4(), decoy])
-    console.log("Decoy list was", props.decoys, "now it is", listToManage);
     const [decoys, setDecoys] = useState(listToManage)
 
     function addDecoy(newDecoyString) {

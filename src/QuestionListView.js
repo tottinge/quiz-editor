@@ -4,21 +4,22 @@ import {v4 as uuidv4} from "uuid";
 import PropTypes from "prop-types";
 import {QuestionView} from "./QuestionView";
 
-export function QuestionSummary({question, updateParent}) {
-    ;
+export function QuestionSummary(props) {
+    const [isOpen, setIsOpen] = useState(props.question.text ? false : true)
+    const [question, setQuestion] = useState(props.question)
 
-    const [isOpen, setIsOpen] = useState(question.text ? false : true)
-
-    function onSave() {
-        updateParent(question)
+    function onUpdate(newQuestion) {
+        setQuestion(newQuestion)
+        props.updateParent(newQuestion)
     }
+
 
     return <div role="listitem"
                 className="accordion-itemn quiz-control drag-item w3-bar w3-card"
                 draggable="true"
                 key={question.uuid}>
         <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle"/>
-        <span className="w3-bar-item w3-cell-middle">{question.text}</span>
+        <span className="qs__title w3-bar-item">{question.text}</span>
         <input type={"image"}
                alt="delete question"
                src={"/delete.png"}
@@ -30,7 +31,7 @@ export function QuestionSummary({question, updateParent}) {
                onClick={() => setIsOpen(!isOpen)}
                className="w3-right w3-bar-item"
         />
-        {isOpen && <QuestionView question={question} updateParent={onSave}></QuestionView>}
+        {isOpen && <QuestionView question={question} updateParent={onUpdate}></QuestionView>}
     </div>
 
 }
