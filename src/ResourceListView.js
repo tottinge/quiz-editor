@@ -27,12 +27,12 @@ export function ResourceListView(props) {
     return <div>
         <header>Resource List:</header>
         <br/>
-        <button
-            className="w3-button w3-green"
+        <input
+            type={"image"}
+            src="add.png"
+            className="w3-button"
             title="Add Resource"
-            onClick={addResource}>
-            Add
-        </button>
+            onClick={addResource}/>
         <div className="resource-container w3-padding"
              title="list of resources">
             {
@@ -43,15 +43,16 @@ export function ResourceListView(props) {
                         id={resource.uuid}
                         className="resource-card w3-card w3-padding w3-panel"
                     >
-                        <button
-                            className="centered-button w3-button w3-right w3-green"
+                        <input
+                            type={"image"}
+                            src={"delete.png"}
+                            alt={"Remove Resource"}
+                            className="w3-circle w3-right"
                             title="Remove Resource"
                             onClick={(e) => {
                                 e.preventDefault();
                                 deleteResource(resource.uuid)
-                            }}>
-                            &times;
-                        </button>
+                            }} />
                         <ResourceView resource = {resource}
                                       parentUpdate={(resource) => updateResource(resource)}/>
                     </div>

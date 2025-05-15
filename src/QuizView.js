@@ -19,7 +19,7 @@ export function QuizView(props) {
 
     const effective_img_url = validator.isURL(quiz.img_url) ? quiz.img_url : "./logo512.png";
 
-    return <div className="quiz-container">
+    return <div className="quiz-container w3-light-grey">
         <h1>
             {quiz.shortname}
             <img

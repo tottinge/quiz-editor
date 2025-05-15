@@ -19,10 +19,13 @@ export function QuestionView(question, updateParent) {
         // updateParent(newDoc)
     }
 
-    return <form className="w3-card-4 w3-container">
-        <label className="input-label w3-green" htmlFor="text">Question To Ask:</label>
+    const inputClassCSS = "w3-input w3-border w3-round-large"
+    const labelClassCSS = "w3-label"
+
+    return <form className="w3-card-4 w3-container w3-light-grey">
+        <label className={labelClassCSS} htmlFor="text">Question To Ask:</label>
         <input
-            className="w3-input"
+            className={inputClassCSS}
             type="text"
             name="text"
             id="text"
@@ -31,9 +34,9 @@ export function QuestionView(question, updateParent) {
             value={doc.text ?? ""}
         />
 
-        <label className="input-label" htmlFor="answer">Correct Answer:</label>
+        <label className={labelClassCSS} htmlFor="answer">Correct Answer:</label>
         <input
-            className="w3-input"
+            className={inputClassCSS}
             type="text"
             name="answer"
             id="answer"
@@ -42,9 +45,9 @@ export function QuestionView(question, updateParent) {
             value={doc.answer ?? ""}
         />
         
-        <label className="input-label" htmlFor="confirmation">Confirmation:</label>
+        <label className={labelClassCSS} htmlFor="confirmation">Confirmation:</label>
         <input
-            className="w3-input"
+            className={inputClassCSS}
             type="text"
             name="confirmation"
             id="confirmation"

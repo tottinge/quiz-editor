@@ -26,7 +26,7 @@ export function QuestionSummary({question, updateParent}) {
         />
         <input type={"image"}
                alt="edit question"
-               src={"/drop-down.png"}
+               src={"drop-down.png"}
                onClick={() => setIsOpen(!isOpen)}
                className="w3-right w3-bar-item"
         />

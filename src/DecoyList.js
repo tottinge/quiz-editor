@@ -33,7 +33,7 @@ export function DecoyList(props) {
     }
 
     return <div className="w3-panel">
-        <header className="input-label">Decoys</header>
+        <header className="w3-label">Decoys</header>
         <input
             type="text"
             className="w3-input w3-border"
@@ -49,11 +49,12 @@ export function DecoyList(props) {
                     className="decoy-item"
                     role="listitem"
                 >
-                    <button
-                        className="w3-button w3-green"
-                        onClick={() => deleteDecoy(key)}>
-                        &times;
-                    </button>
+                    <input
+                        type={"image"}
+                        alt={"Remove Decoy Answer"}
+                        src={"delete.png"}
+                        onClick={() => deleteDecoy(key)}
+                    />
                     &nbsp;
                     <span>{value}</span>
                 </div>
