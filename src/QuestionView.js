@@ -4,10 +4,10 @@ import {DecoyList} from "./DecoyList";
 import {ResourceListView} from "./ResourceListView";
 
 
-export function QuestionView(question, updateParent) {
+export function QuestionView(props) {
 
     const [doc, setDoc] = useState(
-        question ?? {question_id: uuidv4()}
+        props.question ?? {question_id: uuidv4()}
     )
 
     function handleChange(e) {
@@ -16,13 +16,13 @@ export function QuestionView(question, updateParent) {
             [e.target.name]: e.target.value
         };
         setDoc(newDoc)
-        // updateParent(newDoc)
+        props.updateParent(newDoc)
     }
 
     const inputClassCSS = "w3-input w3-border w3-round-large"
     const labelClassCSS = "w3-label"
 
-    return <form className="w3-card-4 w3-container w3-light-grey">
+    return <div className="w3-card-4 w3-container w3-light-grey">
         <label className={labelClassCSS} htmlFor="text">Question To Ask:</label>
         <input
             className={inputClassCSS}
@@ -61,6 +61,6 @@ export function QuestionView(question, updateParent) {
         <br/>
 
         <ResourceListView resources={doc.resources ?? []}/>
-    </form>;
+    </div>;
 }
 

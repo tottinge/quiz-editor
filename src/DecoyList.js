@@ -4,6 +4,7 @@ import "./w3.css";
 
 export function DecoyList(props) {
     const listToManage = (props.decoys ?? []).map(decoy => [uuidv4(), decoy])
+    console.log("Decoy list was", props.decoys, "now it is", listToManage);
     const [decoys, setDecoys] = useState(listToManage)
 
     function addDecoy(newDecoyString) {
@@ -54,7 +55,6 @@ export function DecoyList(props) {
                         type={"image"}
                         alt={"Remove Decoy Answer"}
                         src={"delete.png"}
-                        className="w3-righ"
                         onClick={() => deleteDecoy(key)}
                     />
                 </div>

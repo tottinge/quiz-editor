@@ -6,5 +6,25 @@ const meta = {
 
 export default meta;
 
-export const Default = {
+export const Empty = {
+  args: {
+    updateParent: () => { console.log("update parent")}
+  }
+};
+
+export const Populated = {
+  args: {
+    updateParent: () => {console.log("update parent")},
+    question: {
+      text: "What is your name?",
+      answer: "John",
+      confirmation: "John is the correct answer",
+      decoys: ["Jane", "Jill", "Johnny"],
+      resources: [
+        {
+          text: "Title for recommended reading",
+        }
+      ]
+    }
+  }
 };

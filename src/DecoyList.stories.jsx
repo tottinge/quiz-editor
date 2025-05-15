@@ -6,6 +6,15 @@ const meta = {
 
 export default meta;
 
-export const Default = {
-  args: {}
+export const Populated = {
+  args: {
+    decoys: ["corvids", "canines", "felines", "parrots"]
+  }
 };
+
+export const Empty = {
+  args: {
+    decoys: []
+  }
+};
+

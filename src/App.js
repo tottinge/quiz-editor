@@ -1,6 +1,4 @@
 import './App.css';
-import {QuestionView} from "./QuestionView";
-import {QuizView} from "./QuizView";
 
 function App() {
   return (
