@@ -49,14 +49,14 @@ export function DecoyList(props) {
                     className="decoy-item"
                     role="listitem"
                 >
+                    <span>{value}</span>
                     <input
                         type={"image"}
                         alt={"Remove Decoy Answer"}
                         src={"delete.png"}
+                        className="w3-righ"
                         onClick={() => deleteDecoy(key)}
                     />
-                    &nbsp;
-                    <span>{value}</span>
                 </div>
             })}
         </div>
