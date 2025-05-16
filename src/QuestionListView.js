@@ -13,12 +13,11 @@ export function QuestionSummary(props) {
         props.updateParent(newQuestion)
     }
 
-
-    return <>
-    <div role="listitem"
-                className="accordion-itemn quiz-control drag-item w3-bar w3-card"
-                draggable="true"
-                key={question.uuid}>
+    return <div key={props.key}
+                data-question-id={question.uuid}
+                role="listitem"
+                className="accordion-item quiz-control drag-item w3-bar w3-card"
+                draggable="true">
         <img className="handle w3-bar-item" src="/dragit.png" alt="drag handle"/>
         <span className="qs__title w3-bar-item">{question.text}</span>
         <input type={"image"}
@@ -34,8 +33,6 @@ export function QuestionSummary(props) {
         />
         {isOpen && <QuestionView question={question} updateParent={onUpdate}></QuestionView>}
     </div>
-    </>
-
 }
 
 export function QuestionListView(props) {
