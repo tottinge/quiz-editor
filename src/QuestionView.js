@@ -20,7 +20,7 @@ export function QuestionView(props) {
     }
 
     const inputClassCSS = "w3-input w3-border w3-round-large"
-    const labelClassCSS = "w3-label"
+    const labelClassCSS = "w3-label w3-input"
 
     return <div className="w3-card-4 w3-container w3-light-grey">
         <label className={labelClassCSS} htmlFor="text">Question To Ask:</label>

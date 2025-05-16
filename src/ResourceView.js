@@ -25,7 +25,8 @@ export function ResourceView(props) {
 
     return <div>
         <div className="resource-item" title="resource for further reading">
-            <label htmlFor={"text"}>Text:</label>
+            <h3>Resource</h3>
+            <label htmlFor={"text"} className={"w3-input"}>Text:</label>
             <input
                 className="w3-input"
                 id="text"
@@ -37,7 +38,7 @@ export function ResourceView(props) {
                 onChange={onChange}
                 onBlur={onChange}
             />
-            <label htmlFor={"url"}>URL:</label>
+            <label htmlFor={"url"} className={"w3-input"}>URL:</label>
             <input
                 className="w3-input"
                 placeholder="Enter URL here:"
@@ -51,7 +52,7 @@ export function ResourceView(props) {
                 onBlur={onChange}
             />
             <iframe title="preview of resource page" src={validatedUrl}></iframe>
-            <a className="w3-button centered-button w3-center"
+            <a className="w3-button w3-center w3-teal"
                title={"open preview of resource in new tab"}
                href={preview_href}
                target="_blank"

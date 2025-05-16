@@ -14,7 +14,8 @@ export function QuestionSummary(props) {
     }
 
 
-    return <div role="listitem"
+    return <>
+    <div role="listitem"
                 className="accordion-itemn quiz-control drag-item w3-bar w3-card"
                 draggable="true"
                 key={question.uuid}>
@@ -33,6 +34,7 @@ export function QuestionSummary(props) {
         />
         {isOpen && <QuestionView question={question} updateParent={onUpdate}></QuestionView>}
     </div>
+    </>
 
 }
 

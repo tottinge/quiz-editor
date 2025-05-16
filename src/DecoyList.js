@@ -33,21 +33,21 @@ export function DecoyList(props) {
     }
 
     return <div className="w3-panel">
-        <header className="w3-label">Decoys</header>
+        <label htmlfor="text" className="w3-label w3-input">Decoys</label>
         <input
             type="text"
-            className="w3-input w3-border"
+            className="w3-input w3-border w3-input"
             name="new-decoy"
             id="New Decoy"
             placeholder="New Decoy"
             onBlur={onBlur}
             onKeyDown={onEnterPressed}/>
-        <div className="decoy-container">
+        <div className="decoy-container w3-grid">
             {decoys.map(([key,value]) => {
                 return <div
                     key={key}
-                    className="decoy-item"
                     role="listitem"
+                    className="decoy-item w3-card-4"
                 >
                     <span>{value}</span>
                     <input
